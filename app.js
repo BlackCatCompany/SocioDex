@@ -5,6 +5,7 @@ const config = require('./config'); // Importando o arquivo de configurações
 const indexRouter = require('./routes/index'); // Suas rotas
 const app = express();
 
+
 // Configurando middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
