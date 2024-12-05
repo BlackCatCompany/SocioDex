@@ -1,0 +1,31 @@
+/* index.css */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #C8C3BC; /* Cor de fundo da página */
+  }
+  
+  h1 {
+    text-align: center;
+    color: #1E1E1E;
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 50px;
+  }
+  
+  p {
+    text-align: center;
+    color: #6B6B6B;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Preenche a tela inteira */
+    padding: 20px;
+  }
+  

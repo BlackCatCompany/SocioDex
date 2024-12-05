@@ -1,15 +1,28 @@
 // Importações
+const createError = require('http-errors');
 const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const mongoose = require('mongoose');
 const config = require('./config'); // Importando o arquivo de configurações
-const indexRouter = require('./routes/index'); // Suas rotas
 const app = express();
 
 
-// Configurando middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+var indexRouter = require('./routes/index');
+
+// Configuração do motor de visualização (EJS) e pasta das views
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // Diretório onde estão os templates
+
 app.use('/', indexRouter);
+
+// Configuração dos middlewares
+app.use(logger('dev')); // Log das requisições HTTP
+app.use(express.json()); // Parse de JSON
+app.use(express.urlencoded({ extended: false })); // Parse de URL encoded
+app.use(cookieParser()); // Parse de cookies
+app.use(express.static(path.join(__dirname, 'public'))); // Arquivos estáticos (como CSS, JS, imagens)
 
 // Conexão com MongoDB
 mongoose
@@ -17,7 +30,20 @@ mongoose
   .then(() => console.log('Conexão com MongoDB Atlas bem-sucedida!'))
   .catch((err) => console.error('Erro ao conectar ao MongoDB:', err));
 
-// Configuração do servidor
-app.set('port', config.port);
+// Tratamento de erros 404 (quando a rota não existe)
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// Tratamento de erros gerais
+app.use(function(err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+// Definindo a porta do servidor
+app.set('port', config.port || 3000); // Se não tiver no config, usa 3000 como padrão
 
 module.exports = app;
