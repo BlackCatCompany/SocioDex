@@ -10,7 +10,9 @@ const app = express();
 
 //CRIANDO ROTAS 1
 var indexRouter = require('./routes/index');
+var sociodexRouter = require('./routes/sociodex');
 var quizRouter = require('./routes/quiz');
+var aboutRouter = require('./routes/about');
 
 // Configuração do motor de visualização (EJS) e pasta das views
 app.set('view engine', 'ejs');
@@ -18,7 +20,9 @@ app.set('views', path.join(__dirname, 'views')); // Diretório onde estão os te
 
 //CHAMANDO ROTA 2
 app.use('/', indexRouter);
+app.use('/sociodex', sociodexRouter);
 app.use('/quiz', quizRouter);
+app.use('/about', aboutRouter);
 
 // Configuração dos middlewares
 app.use(logger('dev')); // Log das requisições HTTP
