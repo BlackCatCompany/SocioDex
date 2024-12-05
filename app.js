@@ -8,14 +8,17 @@ const mongoose = require('mongoose');
 const config = require('./config'); // Importando o arquivo de configurações
 const app = express();
 
-
+//CRIANDO ROTAS 1
 var indexRouter = require('./routes/index');
+var quizRouter = require('./routes/quiz');
 
 // Configuração do motor de visualização (EJS) e pasta das views
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Diretório onde estão os templates
 
+//CHAMANDO ROTA 2
 app.use('/', indexRouter);
+app.use('/quiz', quizRouter);
 
 // Configuração dos middlewares
 app.use(logger('dev')); // Log das requisições HTTP
