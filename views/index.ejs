@@ -7,13 +7,41 @@
   <title>Sociodex</title>
   <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
-<body>
-  <!-- Incluir o Header -->
-  <%- include('./partials/header') %>
-  
 
+<!-- Incluir o Header -->
+<%- include('./partials/header') %>
+
+<body>
   <main>
-    <h1>Bem-vindo a home!</h1>
+    <section class="hero">
+      <div class="container">
+        <h2>Bem-vindo à SocioDex</h2>
+        <p>Explore o mundo dos grandes pensadores da Sociologia. Descubra suas ideias, histórias e contribuições.</p>
+        <a href="/sociodex" class="btn">Ver Sociólogos</a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h3>O que você encontrará aqui</h3>
+        <div class="features-grid">
+          <div class="feature">
+            <h4>Biografias</h4>
+            <p>Conheça a vida dos maiores sociólogos da história.</p>
+          </div>
+          <div class="feature">
+            <h4>Teorias</h4>
+            <p>Explore as teorias que moldaram o pensamento moderno.</p>
+          </div>
+          <div class="feature">
+            <h4>Impacto</h4>
+            <p>Veja como suas ideias influenciaram o mundo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+
 </body>
 </html>
