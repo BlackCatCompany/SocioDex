@@ -1,19 +1,83 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sociodex</title>
-  <link rel="stylesheet" href="/stylesheets/index.css">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/quiz.css">
 </head>
 <body>
-  <!-- Incluir o Header -->
-  <%- include('./partials/header') %>
-  
+  <div class="quiz-container">
+    <h1><%= title %></h1>
+    <div id="quiz-box">
+      <!-- Pergunta será exibida aqui dinamicamente -->
+    </div>
+    <button id="next-btn">Próxima</button>
+  </div>
 
-  <main>
-    <h1>Bem-vindo ao Quiz!</h1>
-  </main>
+  <script>
+    const questions = <%- JSON.stringify(questions) %>;
+    let currentQuestionIndex = 0;
+    let userAnswers = {};
+
+    function showQuestion(index) {
+      const quizBox = document.getElementById("quiz-box");
+      const question = questions[index];
+      quizBox.innerHTML = `
+        <p class="question-text">${question.question}</p>
+        ${question.options
+          .map(
+            (option, i) => `
+          <div class="option">
+            <input type="radio" name="answer" id="option-${i}" value="${option}">
+            <label for="option-${i}">${option}</label>
+          </div>
+        `
+          )
+          .join("")}
+      `;
+    }
+
+    function handleNextQuestion() {
+      const selectedOption = document.querySelector('input[name="answer"]:checked');
+      if (!selectedOption) {
+        alert("Por favor, selecione uma resposta.");
+        return;
+      }
+
+      // Salvar resposta do usuário
+      userAnswers[questions[currentQuestionIndex].id] = selectedOption.value;
+
+      // Avançar para a próxima pergunta ou finalizar
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestion(currentQuestionIndex);
+      } else {
+        submitQuiz();
+      }
+    }
+
+    function submitQuiz() {
+      fetch("/quiz/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userAnswers),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          const quizBox = document.getElementById("quiz-box");
+          quizBox.innerHTML = `<p>${result.message}</p>`;
+          document.getElementById("next-btn").style.display = "none";
+        })
+        .catch((error) => console.error("Erro ao enviar o quiz:", error));
+    }
+
+    document.getElementById("next-btn").addEventListener("click", handleNextQuestion);
+
+    // Mostrar a primeira pergunta ao carregar a página
+    showQuestion(currentQuestionIndex);
+  </script>
 </body>
 </html>

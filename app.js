@@ -8,28 +8,22 @@ const mongoose = require('mongoose');
 const config = require('./config'); // Importando o arquivo de configurações
 const app = express();
 
-//CRIANDO ROTAS 1
-var indexRouter = require('./routes/index');
-var sociodexRouter = require('./routes/sociodex');
-var quizRouter = require('./routes/quiz');
-var aboutRouter = require('./routes/about');
+// Importação das rotas
+const indexRouter = require('./routes/index');
+const sociodexRouter = require('./routes/sociodex');
+const quizRouter = require('./routes/quiz');
+const aboutRouter = require('./routes/about');
 
 // Configuração do motor de visualização (EJS) e pasta das views
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Diretório onde estão os templates
-
-//CHAMANDO ROTA 2
-app.use('/', indexRouter);
-app.use('/sociodex', sociodexRouter);
-app.use('/quiz', quizRouter);
-app.use('/about', aboutRouter);
 
 // Configuração dos middlewares
 app.use(logger('dev')); // Log das requisições HTTP
 app.use(express.json()); // Parse de JSON
 app.use(express.urlencoded({ extended: false })); // Parse de URL encoded
 app.use(cookieParser()); // Parse de cookies
-app.use(express.static(path.join(__dirname, 'public'))); // Arquivos estáticos (como CSS, JS, imagens)
+app.use(express.static(path.join(__dirname, 'public'))); // Arquivos estáticos (CSS, JS, imagens)
 
 // Conexão com MongoDB
 mongoose
@@ -37,13 +31,25 @@ mongoose
   .then(() => console.log('Conexão com MongoDB Atlas bem-sucedida!'))
   .catch((err) => console.error('Erro ao conectar ao MongoDB:', err));
 
+// Middleware para log de acessos ao quiz (opcional)
+app.use('/quiz', (req, res, next) => {
+  console.log(`Acesso ao quiz em ${new Date().toISOString()}`);
+  next();
+});
+
+// Configuração das rotas
+app.use('/', indexRouter);
+app.use('/sociodex', sociodexRouter);
+app.use('/quiz', quizRouter);
+app.use('/about', aboutRouter);
+
 // Tratamento de erros 404 (quando a rota não existe)
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // Tratamento de erros gerais
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
