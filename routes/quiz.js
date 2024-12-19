@@ -40,27 +40,29 @@ const questions = [
 
 /* GET página do quiz */
 router.get("/", function (req, res, next) {
-  // Renderiza o template do quiz com as perguntas
-  res.render("quiz", { title: "Quiz de Sociologia", questions });
+  // Começa com a primeira pergunta
+  res.render("quiz", { title: "Quiz de Sociologia", question: questions[0], currentIndex: 0, score: 0 });
 });
 
 /* POST submissão do quiz */
 router.post("/submit", function (req, res, next) {
-  const userAnswers = req.body; // Respostas do usuário enviadas pelo formulário
-  let score = 0;
+  const userAnswer = req.body.answer; // Resposta do usuário
+  const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
+  let score = parseInt(req.body.score) || 0; // Pontuação (passa pela requisição)
 
-  // Valida as respostas do usuário
-  questions.forEach((q) => {
-    if (userAnswers[q.id] === q.answer) {
-      score++;
-    }
-  });
+  // Valida a resposta
+  if (userAnswer === questions[currentIndex].answer) {
+    score++; // Incrementa a pontuação se a resposta estiver correta
+  }
 
-  // Envia a pontuação como resposta JSON
-  res.json({
-    message: `Você acertou ${score} de ${questions.length} perguntas!`,
-    score,
-  });
+  // Verifica se há mais perguntas
+  if (currentIndex + 1 < questions.length) {
+    // Se houver mais perguntas, renderiza a próxima
+    res.render("quiz", { title: "Quiz de Sociologia", question: questions[currentIndex + 1], currentIndex: currentIndex + 1, score });
+  } else {
+    // Se não houver mais perguntas, exibe a pontuação final
+    res.render("quiz", { title: "Quiz de Sociologia", question: null, score });
+  }
 });
 
 module.exports = router;
