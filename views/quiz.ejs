@@ -1,19 +1,42 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sociodex</title>
-  <link rel="stylesheet" href="/stylesheets/index.css">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/quiz.css"> <!-- Caminho do CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
-  <!-- Incluir o Header -->
-  <%- include('./partials/header') %>
-  
 
-  <main>
-    <h1>Bem-vindo ao Quiz!</h1>
-  </main>
+<!-- Incluir o Header -->
+<%- include('./partials/header') %>
+
+<body>
+  <!-- Contêiner do Quiz -->
+  <div class="quiz-container">
+    <% if (question) { %>
+      <form id="quizForm" method="POST" action="/quiz/submit">
+        <div class="question-box">
+          <p class="question-text"><%= question.question %></p>
+        </div>
+        <div class="options-box">
+          <% question.options.forEach(function(option) { %>
+            <label class="option-box">
+              <input type="radio" name="answer" value="<%= option %>">
+              <span><%= option %></span>
+            </label>
+          <% }); %>
+        </div>
+        <input type="hidden" name="index" value="<%= currentIndex %>">
+        <input type="hidden" name="score" value="<%= score %>">
+        <button class="submit-btn" type="submit">Enviar Resposta</button>
+      </form>
+    <% } else { %>
+      <p>Você terminou o quiz!</p>
+      <p>Você acertou <%= score %> de <%= questions.length %> perguntas!</p>
+    <% } %>
+  </div>
 </body>
 </html>

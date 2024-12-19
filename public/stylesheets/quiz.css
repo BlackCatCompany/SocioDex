@@ -1,0 +1,97 @@
+/* Estilo do body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f9; /* Cor de fundo suave */
+  margin: 0; /* Remove margens padrão */
+  padding-top: 80px; /* Espaço para o header fixo */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Altura total da tela */
+}
+
+/* Estilo do header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+  z-index: 1000; /* Garante que o header fique acima do conteúdo */
+}
+
+/* Caixa do quiz */
+.quiz-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px; /* Distância após o padding do body */
+}
+
+/* Caixa de perguntas */
+.question-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question-text {
+  font-family: 'Poppins';
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Caixa das opções de resposta */
+.options-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.option-box {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option-box input[type="radio"] {
+  margin-right: 10px;
+}
+
+.option-box:hover {
+  background-color: #e0e0e0;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
