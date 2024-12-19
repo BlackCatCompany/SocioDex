@@ -1,84 +1,132 @@
-/* Geral */
+/* stylesheets/index.css */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  line-height: 1.6;
+  background-color: #f4f4f4;
 }
 
-/* Header */
-.header {
-  background: #333;
-  color: #fff;
-  padding: 1rem 0;
-}
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.header h1 {
-  margin: 0;
-}
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-.navbar li {
-  margin: 0 1rem;
-}
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* Hero Section */
 .hero {
-  background: #f4f4f4;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-.hero h2 {
-  margin: 0 0 1rem;
-}
-.hero .btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #333;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333; /* Cor de fundo azul escuro */
+  color: white;
+  padding: 50px;
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-/* Features Section */
+.hero-content {
+  flex: 1;
+  max-width: 50%;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.hero .btn {
+  padding: 10px 20px;
+  background-color: #d8d7d6; /* Cor de fundo do botão */
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.hero .btn:hover {
+  background-color: #504f4f;
+}
+
+.hero-image {
+  flex: 1;
+  padding-left: 30px;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px; /* Bordas arredondadas na imagem */
+}
+
+/* Seção de Funcionalidades */
 .features {
-  padding: 2rem 1rem;
-}
-.features h3 {
+  padding: 60px 20px;
   text-align: center;
-  margin-bottom: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
+
+.features h3 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
+}
+
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-.feature {
-  background: #f4f4f4;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  justify-items: center; /* Centraliza os cards dentro da grade */
 }
 
-/* Footer */
-.footer {
-  background: #333;
-  color: #fff;
+/* Card de funcionalidade */
+.feature {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 1rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* Garante que os cards não fiquem estreitos */
+  max-width: 300px; /* Limita a largura máxima do card */
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.feature h4 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.feature p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .features h3 {
+    font-size: 1.8rem;
+  }
+
+  .feature h4 {
+    font-size: 1.2rem;
+  }
 }

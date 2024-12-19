@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sociodex</title>
+  <!-- Link para o CSS da página -->
   <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 
@@ -12,36 +13,47 @@
 <%- include('./partials/header') %>
 
 <body>
+  <!-- Seção Principal -->
   <main>
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="container">
-        <h2>Bem-vindo à SocioDex</h2>
-        <p>Explore o mundo dos grandes pensadores da Sociologia. Descubra suas ideias, histórias e contribuições.</p>
-        <a href="/sociodex" class="btn">Ver Sociólogos</a>
+      <div class="hero-content">
+        <h2>Bem-vindo a SocioDex!</h2>
+        <p>Nosso objetivo é tornar a sociologia acessível, revelando de forma simples como as relações sociais moldam o mundo ao nosso redor.</p>
+        <a href="#features" class="btn">Saiba Mais</a>
+      </div>
+      <div class="hero-image">
+        <img src="/sociologos.jpg" alt="Imagem de Sociologia">
       </div>
     </section>
 
-    <section class="features">
-      <div class="container">
-        <h3>O que você encontrará aqui</h3>
-        <div class="features-grid">
-          <div class="feature">
-            <h4>Biografias</h4>
-            <p>Conheça a vida dos maiores sociólogos da história.</p>
-          </div>
-          <div class="feature">
-            <h4>Teorias</h4>
-            <p>Explore as teorias que moldaram o pensamento moderno.</p>
-          </div>
-          <div class="feature">
-            <h4>Impacto</h4>
-            <p>Veja como suas ideias influenciaram o mundo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Features Section -->
+<!-- Features Section -->
+<section class="features" id="features">
+  <h3>Funcionalidades</h3>
+  <div class="features-grid">
+    <div class="feature">
+      <img src="/biografia.png" alt="Ícone 1" class="feature-icon">
+      <h4>Biografias</h4>
+      <p>Explore as biografias dos principais sociólogos e suas contribuições para a sociologia.</p>
+    </div>
+    <div class="feature">
+      <img src="/teoria2.png" alt="Ícone 2" class="feature-icon">
+      <h4>Teorias</h4>
+      <p>Descubra as teorias que moldaram o entendimento da sociedade e o comportamento humano.</p>
+    </div>
+    <div class="feature">
+      <img src="/pergunta.png" alt="Ícone 3" class="feature-icon">
+      <h4>Quiz</h4>
+      <p>Teste seus conhecimentos sobre sociologia com quizzes interativos.</p>
+    </div>
+  </div>
+</section>
   </main>
 
+  <!-- Incluir o Footer -->
+  <footer>
+    <%- include('./partials/footer') %>
+  </footer>
 </body>
 </html>

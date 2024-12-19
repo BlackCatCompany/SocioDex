@@ -1,18 +1,59 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sociodex</title>
-  <link rel="stylesheet" href="/stylesheets/index.css">
+  <title>About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/about.css">
 </head>
 <body>
-  <!-- Incluir o Header -->
+  <!-- Header -->
   <%- include('./partials/header') %>
 
-  <main>
-    <h1>Bem-vindo ao Sobre da nossa equipe</h1>
+  <main class="about-container">
+    <section class="about-header">
+      <h1>About Us</h1>
+      <p>Conheça a equipe que torna tudo possível!</p>
+    </section>
+
+    <section class="team">
+      <!-- Linha 1 -->
+      <div class="team-row">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Pedro Farley">
+          <h3>Pedro Farley</h3>
+          <p>Desenvolvedor Front-end apaixonado por interfaces intuitivas.</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Francisco Wladison">
+          <h3>Francisco Wladison</h3>
+          <p>Designer Gráfico especialista em experiências visuais.</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Gerdson Costa">
+          <h3>Gerdson Costa</h3>
+          <p>Gerente de Projetos focado em alinhamento e metas.</p>
+        </div>
+      </div>
+
+      <!-- Linha 2 -->
+      <div class="team-row">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Matheus Souza">
+          <h3>Matheus Souza</h3>
+          <p>Analista de Dados apaixonado por números e insights.</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Jaime Nicolas">
+          <h3>Jaime Nicolas</h3>
+          <p>Back-end Developer focado em sistemas escaláveis.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Footer -->
+  <%- include('./partials/footer') %>
 </body>
 </html>
