@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-// Dados das perguntas (pode ser expandido ou armazenado em um banco de dados)
+// Dados das perguntas
 const questions = [
   {
     id: "1",
@@ -38,30 +38,64 @@ const questions = [
   },
 ];
 
-/* GET página do quiz */
+/* GET página inicial do quiz */
 router.get("/", function (req, res, next) {
-  // Começa com a primeira pergunta
-  res.render("quiz", { title: "Quiz de Sociologia", question: questions[0], currentIndex: 0, score: 0 });
+  res.render("quiz", {
+    title: "Quiz de Sociologia",
+    question: questions[0],
+    currentIndex: 0,
+    score: 0,
+    feedback: null,
+  });
 });
 
 /* POST submissão do quiz */
 router.post("/submit", function (req, res, next) {
   const userAnswer = req.body.answer; // Resposta do usuário
   const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
-  let score = parseInt(req.body.score) || 0; // Pontuação (passa pela requisição)
+  let score = parseInt(req.body.score) || 0; // Pontuação acumulada
 
-  // Valida a resposta
+  // Valida a resposta e prepara o feedback
+  let feedback;
   if (userAnswer === questions[currentIndex].answer) {
-    score++; // Incrementa a pontuação se a resposta estiver correta
+    feedback = "Correto! Boa resposta!";
+    score++; // Incrementa a pontuação
+  } else {
+    feedback = `Incorreto! A resposta certa é: "${questions[currentIndex].answer}"`;
   }
 
-  // Verifica se há mais perguntas
+  // Renderiza a página com o feedback antes de avançar
+  res.render("quiz", {
+    title: "Quiz de Sociologia",
+    question: questions[currentIndex],
+    currentIndex,
+    score,
+    feedback,
+  });
+});
+
+/* POST avançar para a próxima pergunta */
+router.post("/next", function (req, res, next) {
+  const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
+  const score = parseInt(req.body.score); // Pontuação acumulada
+
+  // Avança para a próxima pergunta ou exibe o resultado final
   if (currentIndex + 1 < questions.length) {
-    // Se houver mais perguntas, renderiza a próxima
-    res.render("quiz", { title: "Quiz de Sociologia", question: questions[currentIndex + 1], currentIndex: currentIndex + 1, score });
+    res.render("quiz", {
+      title: "Quiz de Sociologia",
+      question: questions[currentIndex + 1],
+      currentIndex: currentIndex + 1,
+      score,
+      feedback: null,
+    });
   } else {
-    // Se não houver mais perguntas, exibe a pontuação final
-    res.render("quiz", { title: "Quiz de Sociologia", question: null, score });
+    res.render("quiz", {
+      title: "Quiz de Sociologia",
+      question: null,
+      score,
+      questions,
+      feedback: null,
+    });
   }
 });
 
