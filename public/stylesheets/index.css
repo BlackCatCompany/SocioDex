@@ -83,7 +83,7 @@ body {
 
 /* Card de funcionalidade */
 .feature {
-  background-color: #ffffff;
+  background-color: #e9e9e9;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -129,4 +129,16 @@ body {
   .feature h4 {
     font-size: 1.2rem;
   }
+}
+
+/* Adicione essas regras no seu arquivo CSS */
+.feature {
+  opacity: 0; /* Escondido inicialmente */
+  transform: translateY(20px); /* Posicionado ligeiramente para baixo */
+  transition: opacity 0.9s ease, transform 0.9s ease; /* Suavidade da animação */
+}
+
+.feature.visible {
+  opacity: 1; /* Totalmente visível */
+  transform: translateY(0); /* Posição final */
 }
