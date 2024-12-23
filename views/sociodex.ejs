@@ -1,23 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Sociólogos</title>
+  <title>SocioDex</title>
+  <link rel="stylesheet" href="/stylesheets/sociodex.css"> <!-- Adicione um CSS se necessário -->
 </head>
 <body>
-  <!-- Incluir o Header -->
   <%- include('./partials/header') %>
 
-  <h1>Lista de Sociólogos</h1>
-  <section>
-    <div class="sociologo-container">
-      <% sociologos.forEach(sociologo => { %>
-        <div class="sociologo-card">
-          <h2><%= sociologo.nome %></h2>
+  <div class="container">
+    <h1 class="text-center">SocioDex</h1>
+    <p class="text-center">Explore os grandes sociólogos e suas contribuições para a sociedade.</p>
+  
+    <div class="grid-cards">
+      <% sociologos.forEach((sociologo, index) => { %>
+        <div class="card">
+          <!-- Número e Coração -->
+          <div class="card-header">
+            <span class="card-number">#<%= index + 1 %></span>
+            <span class="card-favorite">❤️</span>
+          </div>
+  
+          <!-- Foto do Sociólogo -->
+          <img src="<%= sociologo.imagem %>" alt="<%= sociologo.nome %>" class="card-img">
+  
+          <!-- Informações -->
+          <div class="card-info">
+            <h2 class="card-title"><%= sociologo.nome %></h2>
+            <div class="card-categories">
+              <span class="category philospher">Filósofo</span>
+              <span class="category theorist">Teórico</span>
+              <span class="category revolutionary">Revolucionário</span>
+            </div>
+          </div>
         </div>
       <% }) %>
     </div>
-  </section>
-</body>
+  </div>
+  
+  <%- include('./partials/footer') %>
 </html>

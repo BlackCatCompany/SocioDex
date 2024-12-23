@@ -1,0 +1,135 @@
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Cabeçalho centralizado */
+  .text-center {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Grid de Cards */
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards por linha */
+    gap: 20px; /* Espaço entre os cards */
+    margin-top: 20px;
+  }
+  
+  /* Estilização do Card */
+  .card {
+    background-color: #6C3F3F; /* Fundo marrom */
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Cabeçalho do Card */
+  .card-header {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: white;
+  }
+  
+  .card-number {
+    font-weight: bold;
+  }
+  
+  .card-favorite {
+    cursor: pointer;
+  }
+  
+  /* Imagem do Sociólogo */
+  .card-img {
+    width: 80%;
+    height: auto;
+    margin-top: 40px;
+    border-radius: 50%; /* Para arredondar a imagem */
+    border: 3px solid white; /* Borda branca */
+    object-fit: cover;
+  }
+  
+  /* Informações do Card */
+  .card-info {
+    background-color: #fff; /* Fundo branco */
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #6C3F3F;
+    margin-bottom: 8px;
+  }
+  
+  /* Categorias */
+  .card-categories {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .category {
+    background-color: #ddd;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  /* Categorias coloridas */
+  .philospher {
+    background-color: #76c7c0; /* Azul claro */
+  }
+  
+  .theorist {
+    background-color: #3f51b5; /* Azul escuro */
+    color: white;
+  }
+  
+  .revolutionary {
+    background-color: #f44336; /* Vermelho */
+    color: white;
+  }
+  
+  /* Ajuste Responsivo */
+  @media (max-width: 768px) {
+    .grid-cards {
+      grid-template-columns: repeat(2, 1fr); /* 2 cards por linha */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-cards {
+      grid-template-columns: 1fr; /* 1 card por linha */
+    }
+  }
+  

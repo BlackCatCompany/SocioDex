@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Sociólogo</title>
+  <link rel="stylesheet" href="/styles/adicionarSociologo.css"> <!-- Estilo opcional -->
+</head>
+<body>
+  <header>
+    <h1>Adicionar um Novo Sociólogo</h1>
+  </header>
+  
+  <main>
+    <form action="/sociodex/adicionar" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+      <label for="dataNascimento">Data de Nascimento:</label>
+      <input type="date" id="dataNascimento" name="dataNascimento" required>
+
+      <label for="nacionalidade">Nacionalidade:</label>
+      <input type="text" id="nacionalidade" name="nacionalidade" required>
+
+      <label for="principaisObras">Principais Obras (separadas por vírgula):</label>
+      <input type="text" id="principaisObras" name="principaisObras" required>
+
+      <label for="imagem">URL da Imagem:</label>
+      <input type="url" id="imagem" name="imagem" required>
+
+      <button type="submit">Adicionar</button>
+    </form>
+  </main>
+
+  <footer>
+    <a href="/sociodex">Voltar para a SocioDex</a>
+  </footer>
+</body>
+</html>
