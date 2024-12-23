@@ -1,4 +1,3 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,53 +27,80 @@
     </section>
 
     <!-- Features Section -->
-<!-- Features Section -->
-<section class="features" id="features">
-  <h3>Funcionalidades</h3>
-  <div class="features-grid">
-    <div class="feature">
-      <img src="/biografia.png" alt="Ícone 1" class="feature-icon">
-      <h4>Biografias</h4>
-      <p>Explore as biografias dos principais sociólogos e suas contribuições para a sociologia.</p>
-    </div>
-    <div class="feature">
-      <img src="/teoria2.png" alt="Ícone 2" class="feature-icon">
-      <h4>Teorias</h4>
-      <p>Descubra as teorias que moldaram o entendimento da sociedade e o comportamento humano.</p>
-    </div>
-    <div class="feature">
-      <img src="/pergunta.png" alt="Ícone 3" class="feature-icon">
-      <h4>Quiz</h4>
-      <p>Teste seus conhecimentos sobre sociologia com quizzes interativos.</p>
-    </div>
-  </div>
-</section>
+    <section class="features" id="features">
+      <h3>Funcionalidades</h3>
+      <div class="features-grid">
+        <div class="feature">
+          <img src="/biografia.png" alt="Ícone 1" class="feature-icon">
+          <h4>Biografias</h4>
+          <p>Explore as biografias dos principais sociólogos e suas contribuições para a sociologia.</p>
+        </div>
+        <div class="feature">
+          <img src="/teoria2.png" alt="Ícone 2" class="feature-icon">
+          <h4>Teorias</h4>
+          <p>Descubra as teorias que moldaram o entendimento da sociedade e o comportamento humano.</p>
+        </div>
+        <div class="feature">
+          <img src="/pergunta.png" alt="Ícone 3" class="feature-icon">
+          <h4>Quiz</h4>
+          <p>Teste seus conhecimentos sobre sociologia com quizzes interativos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-horizontal">
+      <h3>História da Sociologia</h3>
+      <div class="timeline-container">
+        <% timeline.forEach(event => { %>
+          <div class="timeline-point" data-description="<%= event.description %>">
+            <img src="<%= event.icon %>" alt="<%= event.event %>" title="<%= event.event %>">
+            <span class="timeline-label"><%= event.date %></span>
+          </div>
+        <% }); %>
+      </div>
+      <div id="timeline-description" class="description-box hidden"></div>
+    </section>
   </main>
 
   <!-- Incluir o Footer -->
   <footer>
     <%- include('./partials/footer') %>
   </footer>
-</body>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const features = document.querySelectorAll(".feature");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const features = document.querySelectorAll(".feature");
 
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  features.forEach(feature => observer.observe(feature));
+});
+    document.addEventListener("DOMContentLoaded", () => {
+      const points = document.querySelectorAll(".timeline-point");
+      const descriptionBox = document.getElementById("timeline-description");
+
+      points.forEach(point => {
+        point.addEventListener("click", () => {
+          const description = point.dataset.description;
+          descriptionBox.textContent = description;
+          descriptionBox.classList.remove("hidden");
         });
-      },
-      { threshold: 0.2 }
-    );
-
-    features.forEach(feature => observer.observe(feature));
-  });
-</script>
-
+      });
+    });
+  </script>
+</body>
 </html>
+
+
+
