@@ -49,18 +49,18 @@
     </section>
 
     <!-- Timeline Section -->
-    <section class="timeline-horizontal">
-      <h3>História da Sociologia</h3>
-      <div class="timeline-container">
-        <% timeline.forEach(event => { %>
-          <div class="timeline-point" data-description="<%= event.description %>">
-            <img src="<%= event.icon %>" alt="<%= event.event %>" title="<%= event.event %>">
-            <span class="timeline-label"><%= event.date %></span>
-          </div>
-        <% }); %>
-      </div>
-      <div id="timeline-description" class="description-box hidden"></div>
-    </section>
+  <section class="timeline-horizontal">
+    <h3>História da Sociologia</h3>
+    <div class="timeline-container">
+      <% timeline.forEach(event => { %>
+        <div class="timeline-point" data-description="<%= event.description %>">
+          <img src="/<%= event.image %>" alt="<%= event.event %>" title="<%= event.event %>">
+          <span class="timeline-label"><%= event.date %></span>
+        </div>
+      <% }); %>
+    </div>
+    <div id="timeline-description" class="description-box hidden"></div>
+  </section>
   </main>
 
   <!-- Incluir o Footer -->
