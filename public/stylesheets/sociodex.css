@@ -56,10 +56,7 @@
   font-weight: bold;
 }
 
-.card-favorite {
-  cursor: pointer;
-  color: #ff7979; /* Coração vermelho */
-}
+
 
 /* Imagem do Sociólogo */
 .card-img {
@@ -93,14 +90,7 @@
   word-wrap: break-word; /* Permite quebra de texto */
 }
 
-/* Categorias */
-.card-categories {
-  display: flex;
-  flex-wrap: wrap; /* Permite mais linhas se necessário */
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
-}
+
 
 .category {
   background-color: #eaeaea;
@@ -116,21 +106,50 @@
 .category:hover {
   background-color: #d1d1d1; /* Destaque ao passar o mouse */
 }
-
-/* Categorias coloridas */
-.philospher {
-  background-color: #4ABDAC; /* Azul suave */
+/* Categorias gerais */
+.category {
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85em;
+  display: inline-block;
 }
 
-.theorist {
-  background-color: #392F5A; /* Roxo elegante */
-  color: #ffffff;
+/* Cores específicas para cada categoria */
+.category.Economista {
+  background-color: #1E3A5F;
 }
 
-.revolutionary {
-  background-color: #D9534F; /* Vermelho vibrante */
-  color: #ffffff;
+.category.Revolucionario {
+  background-color: #7A5B59;
 }
+
+.category.Teorico {
+  background-color: #424242;
+}
+
+.category.Feminista {
+  background-color: #F06292;
+}
+
+.category.Lider-politico {
+  background-color: #388E3C;
+}
+
+.category.Ativista {
+  background-color: #FF7043;
+}
+
+.category.Filosofo {
+  background-color: #FF7043;
+}
+
+.category.outros {
+  background-color: #9E9E9E; /* Cinza como cor padrão para "Outros" */
+}
+
 
 /* Ajuste Responsivo */
 @media (max-width: 768px) {
@@ -146,65 +165,10 @@
 }
 
 .card-favorite {
-  width: 40px;
-  height: 40px;
-  background: transparent;
+  width: 100px;
+  height: 100px;
   position: relative;
+  overflow: hidden;
   display: inline-block;
-  cursor: pointer;
-  transform: rotate(-45deg);
-  transition: all 0.3s ease-in-out;
-}
-
-.card-favorite::before,
-.card-favorite::after {
-  content: '';
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: absolute;
-}
-
-.card-favorite::before {
-  top: -20px;
-  left: 0;
-}
-
-.card-favorite::after {
-  top: 0;
-  left: -20px;
-}
-
-.card-favorite.active {
-  background: #ff4d4d;
-  border-color: #ff4d4d;
-}
-
-.card-favorite.active::before,
-.card-favorite.active::after {
-  border-color: #ff4d4d;
-  background: #ff4d4d;
-}
-
-.card-favorite:hover {
-  transform: scale(1.1) rotate(-45deg);
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1) rotate(-45deg);
-  }
-  50% {
-    transform: scale(1.2) rotate(-45deg);
-  }
-  100% {
-    transform: scale(1) rotate(-45deg);
-  }
-}
-
-.card-favorite.active {
-  animation: pulse 0.5s ease-in-out;
 }
 

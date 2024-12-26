@@ -18,7 +18,7 @@ router.get('/adicionar', (req, res) => {
 });
 
 router.post('/adicionar', async (req, res) => {
-  const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem } = req.body;
+  const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem, caracteristicas } = req.body;
 
   try {
     const novoSociologo = new Sociologo({
@@ -26,8 +26,9 @@ router.post('/adicionar', async (req, res) => {
       descricao,
       dataNascimento,
       nacionalidade,
-      principaisObras: principaisObras.split(','), // Converte para array
+      principaisObras: principaisObras.split(',').map((obra) => obra.trim()),
       imagem,
+      caracteristicas: Array.isArray(caracteristicas) ? caracteristicas : [caracteristicas], // Converte para array se necessário
     });
 
     await novoSociologo.save(); // Salva no MongoDB

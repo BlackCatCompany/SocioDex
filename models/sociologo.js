@@ -7,7 +7,8 @@ const SociologoSchema = new mongoose.Schema({
   dataNascimento: { type: String, required: true },
   nacionalidade: { type: String, required: true },
   principaisObras: { type: [String], required: true },
-  imagem: { type: String, required: true }
+  imagem: { type: String, required: true },
+  caracteristicas: { type: [String], required: true } // Ex: ['Filósofo', 'Teórico', 'Revolucionário']
 });
 
 // Modelo do sociólogo

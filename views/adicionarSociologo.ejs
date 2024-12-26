@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adicionar Sociólogo</title>
-  <link rel="stylesheet" href="/styles/adicionarSociologo.css"> <!-- Estilo opcional -->
+  <link rel="stylesheet" href="/stylesheets/adcSocio.css"> <!-- Estilo opcional -->
 </head>
 <body>
   <header>
@@ -30,6 +30,20 @@
 
       <label for="imagem">URL da Imagem:</label>
       <input type="url" id="imagem" name="imagem" required>
+
+      <label for="caracteristicas">Características:</label>
+      <select id="caracteristicas" name="caracteristicas" multiple required>
+        <option value="Economista">Economista (#1E3A5F)</option>
+        <option value="Revolucionario">Revolucionário (#7A5B59)</option>
+        <option value="Teorico">Teórico (#424242)</option>
+        <option value="Feminista">Feminista (#F06292)</option>
+        <option value="LiderPolitico">Líder Político (#388E3C)</option>
+        <option value="Ativista">Ativista (#FF7043)</option>
+        <option value="Filosofo">Filósofo (#FF7043)</option>
+        <option value="Sociólogo">Sociólogo (#6A1B9A)</option>
+        <option value="Educador">Educador (#0097A7)</option>
+      </select>
+      <p><small>Pressione CTRL (ou CMD no Mac) para selecionar várias opções.</small></p>
 
       <button type="submit">Adicionar</button>
     </form>
