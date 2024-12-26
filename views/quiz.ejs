@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  <!-- Definição do charset e da viewport para suportar caracteres especiais e responsividade -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Título da página, que é dinâmico com base na variável title -->
   <title><%= title %></title>
+
+  <!-- Link para o arquivo CSS do quiz -->
   <link rel="stylesheet" href="/stylesheets/quiz.css"> <!-- Caminho do CSS -->
+
+  <!-- Pré-conexões com fontes do Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Link para a fonte Poppins do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <script>
+  // Função que é executada quando a página for carregada
   window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
+    
     if (preloader) {
-      // Adiciona a classe para iniciar a transição
+      // Adiciona a classe 'hidden' para iniciar a transição de desaparecimento
       preloader.classList.add('hidden');
-      // Aguarda a duração da transição antes de remover o elemento
+      
+      // Após 1 segundo (tempo de transição), o preloader será removido
       setTimeout(() => {
         preloader.style.display = 'none';
       }, 1000); // Tempo em milissegundos deve coincidir com o CSS
@@ -24,52 +36,71 @@
   });
 </script>
 
-<%- include('./partials/header') %>
+<%- include('./partials/header') %> <!-- Inclui o cabeçalho da aplicação -->
 
 <body>
 
+  <!-- Preloader (carregador) que aparece enquanto a página carrega -->
   <div id="preloader">
     <div class="loader">
-      <!-- Adicione aqui sua logo ou animação -->
+      <!-- Aqui pode ser colocada a logo ou animação que aparece enquanto carrega -->
       <img src="/socio.png" alt="Logo do Projeto" class="logo">
       <p>Carregando...</p>
     </div>
   </div>
 
+  <!-- Contêiner principal do quiz -->
   <div class="quiz-container">
+  
+    <!-- Exibe o feedback se existir -->
     <% if (feedback) { %>
       <div class="feedback-box">
         <p><%= feedback %></p>
+        
+        <!-- Formulário para a próxima pergunta -->
         <form id="nextForm" method="POST" action="/quiz/next">
-          <input type="hidden" name="index" value="<%= currentIndex %>">
-          <input type="hidden" name="score" value="<%= score %>">
+          <input type="hidden" name="index" value="<%= currentIndex %>"> <!-- Índice da pergunta atual -->
+          <input type="hidden" name="score" value="<%= score %>"> <!-- Score atual -->
           <button class="next-btn" type="submit">Próxima Pergunta</button>
         </form>
       </div>
+      
+    <!-- Caso haja uma pergunta para exibir -->
     <% } else if (question) { %>
       <form id="quizForm" method="POST" action="/quiz/submit">
         <div class="question-box">
+          <!-- Exibe a pergunta atual -->
           <p class="question-text"><%= question.question %></p>
         </div>
+        
+        <!-- Exibe as opções de resposta -->
         <div class="options-box">
           <% question.options.forEach(function(option) { %>
             <label class="option-box">
-              <input type="radio" name="answer" value="<%= option %>">
-              <span><%= option %></span>
+              <input type="radio" name="answer" value="<%= option %>"> <!-- Opção de resposta -->
+              <span><%= option %></span> <!-- Texto da opção -->
             </label>
           <% }); %>
         </div>
+        
+        <!-- Campos ocultos para enviar o índice da pergunta e o score -->
         <input type="hidden" name="index" value="<%= currentIndex %>">
         <input type="hidden" name="score" value="<%= score %>">
+        
+        <!-- Botão de envio da resposta -->
         <button class="submit-btn" type="submit">Enviar Resposta</button>
       </form>
+      
+    <!-- Se o quiz estiver finalizado -->
     <% } else { %>
       <div class="result-box">
         <h2>Quiz Finalizado!</h2>
         <p>
+          <!-- Exibe o resultado do quiz -->
           Você acertou <strong><%= score %></strong> de 
           <%= questions ? questions.length : 0 %> perguntas!
         </p>
+        <!-- Link para refazer o quiz -->
         <a href="/quiz" class="restart-btn">Refazer o Quiz</a>
       </div>
     <% } %>

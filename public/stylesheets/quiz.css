@@ -11,6 +11,11 @@ body {
   height: 100vh;
 }
 
+/* Separando quiz e header */
+.quiz-container{
+  margin-top: 90px;
+}
+
 /* Header fixo */
 header {
   position: fixed;
