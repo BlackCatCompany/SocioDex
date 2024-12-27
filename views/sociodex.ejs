@@ -38,7 +38,7 @@
             <div class="card-categories">
               <% if (Array.isArray(sociologo.caracteristicas)) { %>
                 <% sociologo.caracteristicas.forEach(caracteristica => { %>
-                  <span class="category"><%= caracteristica %></span>
+                  <span class="category <%= caracteristica %>"><%= caracteristica %></span>
                 <% }) %>
               <% } else { %>
                 <span class="category">Sem características</span>

@@ -38,7 +38,6 @@ router.post('/adicionar', async (req, res) => {
   }
 });
 
-
 // Rota para exibir a página de administração
 router.get('/admin', async (req, res) => {
   try {
