@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Sociólogo</title>
+  <link rel="stylesheet" href="/stylesheets/editSocio.css">
+</head>
+<body>
+  <header>
+    <h1>Editar Sociólogo</h1>
+  </header>
+
+  <main>
+    <form action="/sociodex/editar/<%= sociologo._id %>" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" value="<%= sociologo.nome %>" required>
+
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" name="descricao" rows="4" required><%= sociologo.descricao %></textarea>
+
+      <label for="dataNascimento">Data de Nascimento:</label>
+      <input type="date" id="dataNascimento" name="dataNascimento" value="<td><%= new Date(sociologo.dataNascimento).toLocaleDateString('pt-BR') %></td>
+      " required>
+
+      <label for="nacionalidade">Nacionalidade:</label>
+      <input type="text" id="nacionalidade" name="nacionalidade" value="<%= sociologo.nacionalidade %>" required>
+
+      <label for="principaisObras">Principais Obras:</label>
+      <input type="text" id="principaisObras" name="principaisObras" value="<%= sociologo.principaisObras.join(', ') %>" required>
+
+      <label for="imagem">URL da Imagem:</label>
+      <input type="url" id="imagem" name="imagem" value="<%= sociologo.imagem %>" required>
+
+      <label for="caracteristicas">Características:</label>
+      <input type="text" id="caracteristicas" name="caracteristicas" value="<%= sociologo.caracteristicas.join(', ') %>" required>
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </main>
+</body>
+</html>
