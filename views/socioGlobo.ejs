@@ -1,64 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Add Multiple Markers</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
-<style>
-    body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    #header {
-        background-color: #333;
-        color: white;
-        padding: 10px;
-        text-align: center;
-    }
-
-    #map {
-        flex-grow: 1; /* O mapa ocupa o restante do espaço disponível */
-    }
-</style>
+    <meta charset="utf-8">
+    <title>Mapa Sociologos</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/socioGlobo.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
 </head>
 
+<!-- Incluir o Header -->
 <%- include('./partials/header') %>
 
-<body>
+    <body>
 
-    <!-- Container do Mapa -->
-    <div id="map"></div>
+        <div id="map"></div>
 
-    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
+        <script>
+            // Token do Mapbox
+            mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
 
-        const locations = [
-            { name: 'Fortaleza, Brazil', coordinates: [-38.5426, -3.71722] },
-            { name: 'São Paulo, Brazil', coordinates: [-46.6333, -23.5505] },
-            { name: 'Rio de Janeiro, Brazil', coordinates: [-43.1729, -22.9068] }
-        ];
+            // Dados das localizações recebidos do backend
+            const locations = JSON.parse('<%- JSON.stringify(locations) %>');
 
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v12',
-            center: [-38.5426, -3.71722],
-            zoom: 4
-        });
+            // Configuração inicial do mapa
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: [-38.5426, -3.71722], // Coordenadas iniciais
+                zoom: 4
+            });
 
-        locations.forEach(location => {
-            new mapboxgl.Marker()
-                .setLngLat(location.coordinates)
-                .setPopup(
-                    new mapboxgl.Popup({ offset: 25 }).setText(location.name)
-                )
-                .addTo(map);
-        });
-    </script>
-</body>
+            // Adicionar marcadores ao mapa
+            locations.forEach(location => {
+                const el = document.createElement('div');
+                el.className = 'custom-marker';
+                el.style.backgroundImage = `url(${location.image})`;
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(location.coordinates)
+                    .setPopup(
+                        new mapboxgl.Popup({ offset: 25 }).setText(location.name)
+                    )
+                    .addTo(map);
+            });
+        </script>
+    </body>
+
 </html>
