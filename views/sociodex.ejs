@@ -15,14 +15,10 @@
     <h1 class="text-center">SocioDex</h1>
     <p class="text-center">Explore os grandes sociólogos e suas contribuições para a sociedade.</p>
 
-    <!-- Script para passar dados dos sociólogos ao JavaScript -->
-    <script id="sociologos-data" type="application/json">
-      <%= JSON.stringify(sociologos) %>
-    </script>
-
+    <!-- Grid de Cards -->
     <div class="grid-cards">
       <% sociologos.forEach((sociologo, index) => { %>
-        <div class="card">
+        <div class="card" onclick="navigateToDetail('<%= sociologo._id %>')">
           <!-- Número e Coração -->
           <div class="card-header">
             <span class="card-number">#<%= index + 1 %></span>
@@ -52,6 +48,11 @@
 
   <%- include('./partials/footer') %>
 
-  <script src="/scripts/sociodex.js"></script>
+  <!-- Script para redirecionamento -->
+  <script>
+    function navigateToDetail(id) {
+      window.location.href = `/${id}`; // Redireciona para a rota de detalhamento
+    }
+  </script>
 </body>
 </html>
