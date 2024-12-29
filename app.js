@@ -11,6 +11,7 @@ const app = express();
 // Importação das rotas
 const indexRouter = require('./routes/index');
 const sociodexRouter = require('./routes/sociodex');
+const socioGloboRouter = require('./routes/socioGlobo')
 const quizRouter = require('./routes/quiz');
 const aboutRouter = require('./routes/about');
 
@@ -40,6 +41,7 @@ app.use('/quiz', (req, res, next) => {
 // Configuração das rotas
 app.use('/', indexRouter);
 app.use('/sociodex', sociodexRouter);
+app.use('/socioGlobo', socioGloboRouter)
 app.use('/quiz', quizRouter);
 app.use('/about', aboutRouter);
 
