@@ -2,61 +2,63 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Add a marker using a place name</title>
+<title>Add Multiple Markers</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
 <style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    #header {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #map {
+        flex-grow: 1; /* O mapa ocupa o restante do espaço disponível */
+    }
 </style>
 </head>
 
 <%- include('./partials/header') %>
 
 <body>
-<div id="map"></div>
 
-<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    <!-- Container do Mapa -->
+    <div id="map"></div>
 
-<script>
-	// TO MAKE THE MAP APPEAR YOU MUST
-	// ADD YOUR ACCESS TOKEN FROM
-	// https://account.mapbox.com
-	mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
-    const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
-    mapboxClient.geocoding
-        .forwardGeocode({
-            query: 'Wellington, New Zealand',
-            autocomplete: false,
-            limit: 1
-        })
-        .send()
-        .then((response) => {
-            if (
-                !response ||
-                !response.body ||
-                !response.body.features ||
-                !response.body.features.length
-            ) {
-                console.error('Invalid response:');
-                console.error(response);
-                return;
-            }
-            const feature = response.body.features[0];
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
 
-            const map = new mapboxgl.Map({
-                container: 'map',
-                // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-                style: 'mapbox://styles/mapbox/streets-v12',
-                center: feature.center,
-                zoom: 10
-            });
+        const locations = [
+            { name: 'Fortaleza, Brazil', coordinates: [-38.5426, -3.71722] },
+            { name: 'São Paulo, Brazil', coordinates: [-46.6333, -23.5505] },
+            { name: 'Rio de Janeiro, Brazil', coordinates: [-43.1729, -22.9068] }
+        ];
 
-            // Create a marker and add it to the map.
-            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [-38.5426, -3.71722],
+            zoom: 4
         });
-</script>
 
+        locations.forEach(location => {
+            new mapboxgl.Marker()
+                .setLngLat(location.coordinates)
+                .setPopup(
+                    new mapboxgl.Popup({ offset: 25 }).setText(location.name)
+                )
+                .addTo(map);
+        });
+    </script>
 </body>
 </html>
