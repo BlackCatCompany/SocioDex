@@ -18,19 +18,25 @@ router.get('/adicionar', (req, res) => {
 });
 
 router.post('/adicionar', async (req, res) => {
-  const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem, caracteristicas } = req.body;
+  const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem, caracteristicas, coordenadas } = req.body;
 
   try {
-    const novoSociologo = new Sociologo({
-      nome,
-      descricao,
-      dataNascimento,
-      nacionalidade,
-      principaisObras: principaisObras.split(',').map((obra) => obra.trim()),
-      imagem,
-      caracteristicas: Array.isArray(caracteristicas) ? caracteristicas : [caracteristicas], // Converte para array se necessário
-    });
+      // Validação básica para coordenadas
+      const coordenadasArray = coordenadas.split(',').map((valor) => parseFloat(valor.trim()));
+      if (coordenadasArray.length !== 2 || coordenadasArray.some(isNaN)) {
+          return res.status(400).send('Coordenadas inválidas. Certifique-se de que são dois números separados por vírgulas.');
+      }
 
+      const novoSociologo = new Sociologo({
+          nome,
+          descricao,
+          dataNascimento,
+          nacionalidade,
+          principaisObras: principaisObras.split(',').map((obra) => obra.trim()),
+          imagem,
+          caracteristicas: Array.isArray(caracteristicas) ? caracteristicas : [caracteristicas],
+          coordenadas: coordenadasArray, // Salva o array numérico no MongoDB
+      });
     await novoSociologo.save(); // Salva no MongoDB
     res.redirect('/sociodex');
   } catch (error) {
@@ -62,6 +68,7 @@ router.get('/editar/:id', async (req, res) => {
 });
 
 // Rota para atualizar um sociólogo
+// Falta Modificar o código para modificar as coordenadas
 router.post('/editar/:id', async (req, res) => {
   const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem, caracteristicas } = req.body;
 
