@@ -3,49 +3,59 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Mapa Sociologos</title>
+    <title>Mapa Sociólogos</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/socioGlobo.css">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="/stylesheets/socioGlobo.css"> <!-- Linkando o Css do SocioGlobo-->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script> <!-- -->
 </head>
 
 <!-- Incluir o Header -->
 <%- include('./partials/header') %>
 
-    <body>
+<body>
+    <!-- Elemento onde o mapa será exibido -->
+    <div id="map"></div>
 
-        <div id="map"></div>
+    <script>
+        // Adiciona o token de acesso do Mapbox para autenticação
+        mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
 
-        <script>
-            // Token do Mapbox
-            mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
+        // Configuração inicial do mapa, definindo o contêiner HTML, estilo e posição inicial
+        const map = new mapboxgl.Map({
+            container: 'map', // ID do elemento HTML onde o mapa será exibido
+            style: 'mapbox://styles/mapbox/streets-v12', // Estilo do mapa
+            center: [-38.5426, -3.71722], // Coordenadas iniciais [longitude, latitude]
+            zoom: 4 // Nível inicial de zoom
+        });
 
-            // Dados das localizações recebidos do backend
-            const locations = JSON.parse('<%- JSON.stringify(locations) %>');
+        // Dados das localizações dos sociólogos recebidos do backend (convertidos para JavaScript)
+        const sociologos = JSON.parse('<%- JSON.stringify(sociologos) %>');
 
-            // Configuração inicial do mapa
-            const map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v12',
-                center: [-38.5426, -3.71722], // Coordenadas iniciais
-                zoom: 4
-            });
+        // Itera sobre cada sociólogo para criar marcadores no mapa
+        sociologos.forEach(sociologo => {
+            // Cria um elemento HTML para representar o marcador no mapa
+            const el = document.createElement('div');
+            el.className = 'marker'; // Classe CSS para personalizar o marcador
+            el.style.width = '40px'; // Largura do marcador
+            el.style.height = '40px'; // Altura do marcador
+            el.style.backgroundImage = `url(${sociologo.imagem})`; // Define a imagem de fundo do marcador
+            el.style.backgroundSize = 'cover'; // Ajusta a imagem para cobrir todo o marcador
+            el.style.backgroundPosition = 'center'; // Centraliza a imagem
+            el.style.borderRadius = '50%'; // Torna o marcador redondo
 
-            // Adicionar marcadores ao mapa
-            locations.forEach(location => {
-                const el = document.createElement('div');
-                el.className = 'custom-marker';
-                el.style.backgroundImage = `url(${location.image})`;
+            // Adiciona o marcador ao mapa com base nas coordenadas do sociólogo
+            new mapboxgl.Marker(el)
+                .setLngLat([sociologo.coordenadas[1], sociologo.coordenadas[0]]) // Define as coordenadas [longitude, latitude]
+                .setPopup(
+                    // Adiciona um popup ao marcador que exibirá o nome do sociólogo ao clicar
+                    new mapboxgl.Popup({ offset: 25 }).setText(sociologo.nome)
+                )
+                .addTo(map); // Adiciona o marcador ao mapa
+        });
+    </script>
+</body>
 
-                new mapboxgl.Marker(el)
-                    .setLngLat(location.coordinates)
-                    .setPopup(
-                        new mapboxgl.Popup({ offset: 25 }).setText(location.name)
-                    )
-                    .addTo(map);
-            });
-        </script>
     </body>
 
 </html>

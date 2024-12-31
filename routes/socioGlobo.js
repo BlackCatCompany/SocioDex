@@ -1,28 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const Sociologo = require('../models/sociologo'); // Pegando a estrutura do sociologo.js
 
-// Dados das marcações no mapa
-const locations = [
-    {
-        name: 'Fortaleza, Brazil',
-        coordinates: [-38.5426, -3.71722],
-        image: '/images/augustecomte.jpg'
-    },
-    {
-        name: 'São Paulo, Brazil',
-        coordinates: [-46.6333, -23.5505],
-        image: '/images/Durkheim.jpg'
-    },
-    {
-        name: 'Rio de Janeiro, Brazil',
-        coordinates: [-43.1729, -22.9068],
-        image: '/images/darwin.jpg'
-    }
-];
-
-// Rota para renderizar o EJS e passar os dados das marcações
-router.get('/', (req, res) => {
-    res.render('socioGlobo', { locations });
+// Rota para renderizar o mapa e passar os dados
+router.get('/', async (req, res) => {
+  try {
+    const sociologos = await Sociologo.find(); // Recupera todos os sociólogos do banco de dados
+    res.render('socioGlobo', { sociologos: sociologos }); // Renderizando SocioGlobo.ejs e passando os sociologos para o Front-end
+    console.log(sociologos); // Deve exibir a lista de sociólogos.
+  } catch (error) {
+    res.status(500).send('Erro ao carregar os sociólogos: ' + error.message); // Exibir mensagem de erro
+  }
 });
 
 module.exports = router;
