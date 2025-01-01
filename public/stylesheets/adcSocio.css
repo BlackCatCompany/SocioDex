@@ -80,7 +80,10 @@ form select option[value="Teorico"] { background-color: #424242; color: white; }
 form select option[value="Feminista"] { background-color: #F06292; color: white; }
 form select option[value="Líder Politico"] { background-color: #388E3C; color: white; }
 form select option[value="Ativista"] { background-color: #FF7043; color: white; }
-form select option[value="Filósofo"] { background-color: #FF7043; color: white; }
+form select option[value="Filósofo"] { background-color: #76D1D8; color: #2F2F2F; }
+form select option[value="Educador"] { background-color: #944891; color: white; }
+form select option[value="Comunista"] { background-color: #C62828; color: white; }
+form select option[value="Capitalista"] { background-color: #D9BB1A; color: white; }
 
 button {
   background-color: #1E3A5F;
