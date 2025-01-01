@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Sociólogo</title>
   <link rel="stylesheet" href="/stylesheets/editSocio.css">
 </head>
+
 <body>
   <header>
     <h1>Editar Sociólogo</h1>
@@ -27,16 +29,22 @@
       <input type="text" id="nacionalidade" name="nacionalidade" value="<%= sociologo.nacionalidade %>" required>
 
       <label for="principaisObras">Principais Obras:</label>
-      <input type="text" id="principaisObras" name="principaisObras" value="<%= sociologo.principaisObras.join(', ') %>" required>
+      <input type="text" id="principaisObras" name="principaisObras" value="<%= sociologo.principaisObras.join(', ') %>"
+        required>
 
       <label for="imagem">URL da Imagem:</label>
       <input type="url" id="imagem" name="imagem" value="<%= sociologo.imagem %>" required>
 
       <label for="caracteristicas">Características:</label>
-      <input type="text" id="caracteristicas" name="caracteristicas" value="<%= sociologo.caracteristicas.join(', ') %>" required>
+      <input type="text" id="caracteristicas" name="caracteristicas" value="<%= sociologo.caracteristicas.join(', ') %>"
+        required>
+
+      <label for="coordenadas">Coordenadas:</label>
+      <input type="text" id="coordenadas" name="coordenadas" value="<%= sociologo.coordenadas.join(', ') %>" required>
 
       <button type="submit">Salvar Alterações</button>
     </form>
   </main>
 </body>
+
 </html>

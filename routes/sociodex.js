@@ -68,11 +68,17 @@ router.get('/editar/:id', async (req, res) => {
 });
 
 // Rota para atualizar um sociólogo
-// Falta Modificar o código para modificar as coordenadas
 router.post('/editar/:id', async (req, res) => {
-  const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem, caracteristicas } = req.body;
+  const { nome, descricao, dataNascimento, nacionalidade, principaisObras, imagem, caracteristicas, coordenadas } = req.body;
 
   try {
+    // Processa o campo coordenadas
+    const coordenadasArray = coordenadas.split(',').map((valor) => parseFloat(valor.trim()));
+    if (coordenadasArray.length !== 2 || coordenadasArray.some(isNaN)) {
+      return res.status(400).send('Coordenadas inválidas. Certifique-se de que são dois números separados por vírgulas.');
+    }
+
+    // Atualiza o documento no MongoDB
     await Sociologo.findByIdAndUpdate(req.params.id, {
       nome,
       descricao,
@@ -81,7 +87,9 @@ router.post('/editar/:id', async (req, res) => {
       principaisObras: principaisObras.split(',').map((obra) => obra.trim()),
       imagem,
       caracteristicas: Array.isArray(caracteristicas) ? caracteristicas : [caracteristicas],
+      coordenadas: coordenadasArray, // Atualiza as coordenadas
     });
+
     res.redirect('/sociodex/admin');
   } catch (error) {
     res.status(500).send('Erro ao atualizar o sociólogo: ' + error.message);
