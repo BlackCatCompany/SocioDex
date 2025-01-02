@@ -108,13 +108,15 @@ router.post('/deletar/:id', async (req, res) => {
 
 // Rota para detalhamento de um sociólogo (rota dinâmica deve ficar por último)
 router.get('/:id', async (req, res) => {
+  console.log('ID recebido:', req.params.id); // Adicione este log
   try {
-    const sociologo = await Sociologo.findById(req.params.id); // Busca o sociólogo pelo ID
+    const sociologo = await Sociologo.findById(req.params.id);
     if (!sociologo) {
       return res.status(404).send('Sociólogo não encontrado');
     }
-    res.render('detalheSociologo', { sociologo }); // Renderiza o template detalheSociologo.ejs
+    res.render('detalheSociologo', { sociologo });
   } catch (error) {
+    console.error(error); // Log do erro
     res.status(500).send('Erro ao carregar o detalhamento: ' + error.message);
   }
 });

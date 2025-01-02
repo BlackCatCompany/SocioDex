@@ -36,8 +36,19 @@
       <input type="url" id="imagem" name="imagem" value="<%= sociologo.imagem %>" required>
 
       <label for="caracteristicas">Características:</label>
-      <input type="text" id="caracteristicas" name="caracteristicas" value="<%= sociologo.caracteristicas.join(', ') %>"
-        required>
+      <select id="caracteristicas" name="caracteristicas" multiple required>
+        <option value="Economista">Economista</option>
+        <option value="Revolucionario">Revolucionário</option>
+        <option value="Teorico">Teórico</option>
+        <option value="Feminista">Feminista</option>
+        <option value="Líder Politico">Líder Político</option>
+        <option value="Ativista">Ativista</option>
+        <option value="Filósofo">Filósofo</option>
+        <option value="Educador">Educador</option>
+        <option value="Comunista">Comunista</option>
+        <option value="Capitalista">Capitalista</option>
+      </select>
+      <p><small>Pressione CTRL (ou CMD no Mac) para selecionar várias opções.</small></p>
 
       <label for="coordenadas">Coordenadas:</label>
       <input type="text" id="coordenadas" name="coordenadas" value="<%= sociologo.coordenadas.join(', ') %>" required>

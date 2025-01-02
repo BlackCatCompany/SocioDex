@@ -18,11 +18,15 @@
     <!-- Grid de Cards -->
     <div class="grid-cards">
       <% sociologos.forEach((sociologo, index) => { %>
-        <div class="card" onclick="navigateToDetail('<%= sociologo._id %>')">
+        <div 
+          class="card" 
+          onclick="navigateToDetail('<%= sociologo._id %>')" 
+          style="cursor: pointer;"
+        >
           <!-- Número e Coração -->
           <div class="card-header">
             <span class="card-number">#<%= index + 1 %></span>
-            <div id="heart-animation-<%= index %>" class="card-favorite" style="width: 50px; height: 50px; cursor: pointer;"></div>
+            <div id="heart-animation-<%= index %>" class="card-favorite" style="width: 50px; height: 50px;"></div>
           </div>
 
           <!-- Foto do Sociólogo -->
@@ -51,7 +55,7 @@
   <!-- Script para redirecionamento -->
   <script>
     function navigateToDetail(id) {
-      window.location.href = `/${id}`; // Redireciona para a rota de detalhamento
+      window.location.href = `/sociodex/${id}`; // Redireciona para a rota de detalhamento
     }
   </script>
 </body>
