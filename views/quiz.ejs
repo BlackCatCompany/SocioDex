@@ -49,58 +49,37 @@
     </div>
   </div>
 
-  <!-- Contêiner principal do quiz -->
   <div class="quiz-container">
-  
-    <!-- Exibe o feedback se existir -->
     <% if (feedback) { %>
       <div class="feedback-box">
         <p><%= feedback %></p>
-        
-        <!-- Formulário para a próxima pergunta -->
         <form id="nextForm" method="POST" action="/quiz/next">
-          <input type="hidden" name="index" value="<%= currentIndex %>"> <!-- Índice da pergunta atual -->
-          <input type="hidden" name="score" value="<%= score %>"> <!-- Score atual -->
+          <input type="hidden" name="index" value="<%= currentIndex %>">
+          <input type="hidden" name="score" value="<%= score %>">
           <button class="next-btn" type="submit">Próxima Pergunta</button>
         </form>
       </div>
-      
-    <!-- Caso haja uma pergunta para exibir -->
     <% } else if (question) { %>
       <form id="quizForm" method="POST" action="/quiz/submit">
         <div class="question-box">
-          <!-- Exibe a pergunta atual -->
           <p class="question-text"><%= question.question %></p>
         </div>
-        
-        <!-- Exibe as opções de resposta -->
         <div class="options-box">
           <% question.options.forEach(function(option) { %>
             <label class="option-box">
-              <input type="radio" name="answer" value="<%= option %>"> <!-- Opção de resposta -->
-              <span><%= option %></span> <!-- Texto da opção -->
+              <input type="radio" name="answer" value="<%= option %>">
+              <span><%= option %></span>
             </label>
           <% }); %>
         </div>
-        
-        <!-- Campos ocultos para enviar o índice da pergunta e o score -->
         <input type="hidden" name="index" value="<%= currentIndex %>">
         <input type="hidden" name="score" value="<%= score %>">
-        
-        <!-- Botão de envio da resposta -->
         <button class="submit-btn" type="submit">Enviar Resposta</button>
       </form>
-      
-    <!-- Se o quiz estiver finalizado -->
     <% } else { %>
       <div class="result-box">
         <h2>Quiz Finalizado!</h2>
-        <p>
-          <!-- Exibe o resultado do quiz -->
-          Você acertou <strong><%= score %></strong> de 
-          <%= questions ? questions.length : 0 %> perguntas!
-        </p>
-        <!-- Link para refazer o quiz -->
+        <p>Você acertou <strong><%= score %></strong> de <%= questions ? questions.length : 0 %> perguntas!</p>
         <a href="/quiz" class="restart-btn">Refazer o Quiz</a>
       </div>
     <% } %>

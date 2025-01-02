@@ -1,101 +1,95 @@
 var express = require("express");
 var router = express.Router();
-
-// Dados das perguntas
-const questions = [
-  {
-    id: "1",
-    question: "Quem foi Karl Marx?",
-    options: [
-      "Um economista e filósofo alemão",
-      "Um cientista político brasileiro",
-      "Um sociólogo francês",
-      "Um historiador italiano",
-    ],
-    answer: "Um economista e filósofo alemão",
-  },
-  {
-    id: "2",
-    question: "O que Émile Durkheim considerava 'fatos sociais'?",
-    options: [
-      "Eventos históricos",
-      "Fenômenos sociais que exercem uma influência sobre os indivíduos",
-      "Comportamentos individuais",
-      "Teorias psicológicas",
-    ],
-    answer: "Fenômenos sociais que exercem uma influência sobre os indivíduos",
-  },
-  {
-    id: "3",
-    question: "Qual teoria é associada a Max Weber?",
-    options: [
-      "A ética protestante e o espírito do capitalismo",
-      "A luta de classes",
-      "A teoria do darwinismo social",
-      "O funcionalismo estrutural",
-    ],
-    answer: "A ética protestante e o espírito do capitalismo",
-  },
-];
+const Pergunta = require("../models/perguntas"); // Modelo MongoDB
 
 /* GET página inicial do quiz */
-router.get("/", function (req, res, next) {
-  res.render("quiz", {
-    title: "Quiz de Sociologia",
-    question: questions[0],
-    currentIndex: 0,
-    score: 0,
-    feedback: null,
-  });
-});
-
-/* POST submissão do quiz */
-router.post("/submit", function (req, res, next) {
-  const userAnswer = req.body.answer; // Resposta do usuário
-  const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
-  let score = parseInt(req.body.score) || 0; // Pontuação acumulada
-
-  // Valida a resposta e prepara o feedback
-  let feedback;
-  if (userAnswer === questions[currentIndex].answer) {
-    feedback = "Correto! Boa resposta!";
-    score++; // Incrementa a pontuação
-  } else {
-    feedback = `Incorreto! A resposta certa é: "${questions[currentIndex].answer}"`;
+router.get("/", async function (req, res, next) {
+  try {
+    const questions = await Pergunta.find(); // Busca todas as perguntas no MongoDB
+    if (!questions.length) {
+      return res.render("quiz", {
+        title: "Quiz de Sociologia",
+        question: null,
+        score: 0,
+        feedback: "Nenhuma pergunta encontrada no banco de dados.",
+      });
+    }
+    console.log(questions)
+    res.render("quiz", {
+      title: "Quiz de Sociologia",
+      question: {
+        question: questions[0].pergunta,
+        options: questions[0].alternativas,
+      },
+      currentIndex: 0,
+      score: 0,
+      feedback: null,
+    });
+  } catch (error) {
+    res.status(500).send("Erro ao carregar perguntas: " + error.message);
   }
-
-  // Renderiza a página com o feedback antes de avançar
-  res.render("quiz", {
-    title: "Quiz de Sociologia",
-    question: questions[currentIndex],
-    currentIndex,
-    score,
-    feedback,
-  });
 });
 
-/* POST avançar para a próxima pergunta */
-router.post("/next", function (req, res, next) {
-  const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
-  const score = parseInt(req.body.score); // Pontuação acumulada
+/* POST submissão da resposta */
+router.post("/submit", async function (req, res, next) {
+  try {
+    const questions = await Pergunta.find();
+    const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
+    const userAnswer = req.body.answer; // Resposta do usuário
+    let score = parseInt(req.body.score) || 0; // Pontuação acumulada
 
-  // Avança para a próxima pergunta ou exibe o resultado final
-  if (currentIndex + 1 < questions.length) {
+    let feedback;
+    if (userAnswer === questions[currentIndex].respostaCorreta) {
+      feedback = "Correto! Boa resposta!";
+      score++;
+    } else {
+      feedback = `Incorreto! A resposta certa é: "${questions[currentIndex].respostaCorreta}".`;
+    }
+
     res.render("quiz", {
       title: "Quiz de Sociologia",
-      question: questions[currentIndex + 1],
-      currentIndex: currentIndex + 1,
+      question: {
+        question: questions[currentIndex].pergunta,
+        options: questions[currentIndex].alternativas,
+      },
+      currentIndex,
       score,
-      feedback: null,
+      feedback,
     });
-  } else {
-    res.render("quiz", {
-      title: "Quiz de Sociologia",
-      question: null,
-      score,
-      questions,
-      feedback: null,
-    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/* POST avançar para próxima pergunta */
+router.post("/next", async function (req, res, next) {
+  try {
+    const questions = await Pergunta.find();
+    const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
+    const score = parseInt(req.body.score); // Pontuação acumulada
+
+    if (currentIndex + 1 < questions.length) {
+      res.render("quiz", {
+        title: "Quiz de Sociologia",
+        question: {
+          question: questions[currentIndex + 1].pergunta,
+          options: questions[currentIndex + 1].alternativas,
+        },
+        currentIndex: currentIndex + 1,
+        score,
+        feedback: null,
+      });
+    } else {
+      res.render("quiz", {
+        title: "Quiz de Sociologia",
+        question: null,
+        score,
+        questions,
+        feedback: null,
+      });
+    }
+  } catch (err) {
+    next(err);
   }
 });
 
