@@ -2,10 +2,21 @@ var express = require("express");
 var router = express.Router();
 const Pergunta = require("../models/perguntas"); // Modelo MongoDB
 
+
+// Função para embaralhar um array (Fisher-Yates Shuffle)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Troca os elementos
+  }
+  return array;
+}
+
 /* GET página inicial do quiz */
 router.get("/", async function (req, res, next) {
   try {
-    const questions = await Pergunta.find(); // Busca todas as perguntas no MongoDB
+    let questions = await Pergunta.find(); // Busca todas as perguntas no MongoDB
+
     if (!questions.length) {
       return res.render("quiz", {
         title: "Quiz de Sociologia",
@@ -14,12 +25,16 @@ router.get("/", async function (req, res, next) {
         feedback: "Nenhuma pergunta encontrada no banco de dados.",
       });
     }
-    console.log(questions)
+
+    // Embaralha as perguntas
+    questions = shuffleArray(questions);
+
+    // Renderiza a primeira pergunta embaralhada
     res.render("quiz", {
       title: "Quiz de Sociologia",
       question: {
         question: questions[0].pergunta,
-        options: questions[0].alternativas,
+        options: shuffleArray(questions[0].alternativas), // Embaralha as alternativas também
       },
       currentIndex: 0,
       score: 0,
