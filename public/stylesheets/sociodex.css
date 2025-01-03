@@ -134,7 +134,7 @@
   background-color: #F06292;
 }
 
-.category.Lider-politico {
+.category.LiderPolitico {
   background-color: #388E3C;
 }
 
@@ -143,11 +143,23 @@
 }
 
 .category.Filosofo {
-  background-color: #FF7043;
+  background-color: #0087f5;
+}
+
+.category.Educador {
+  background-color: #944891;
+}
+
+.category.Comunista {
+  background-color: #C62828;
+}
+
+.category.Capitalista {
+  background-color: #D9BB1A;
 }
 
 .category.outros {
-  background-color: #9E9E9E; /* Cinza como cor padrão para "Outros" */
+  background-color: #444444; /* Cinza como cor padrão para "Outros" */
 }
 
 

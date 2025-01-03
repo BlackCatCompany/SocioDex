@@ -25,11 +25,13 @@
         <% }) %>
       </ul>
       <h3>Características:</h3>
-      <div class="caracteristicas">
-        <% sociologo.caracteristicas.forEach(caracteristica => { %>
-          <span class="badge"><%= caracteristica %></span>
-        <% }) %>
-      </div>
+<div class="caracteristicas">
+  <% sociologo.caracteristicas.forEach(caracteristica => { %>
+    <span class="badge category <%= caracteristica.toLowerCase().replace(/ /g, "-") %>">
+      <%= caracteristica %>
+    </span>
+  <% }) %>
+</div>
     </div>
   </div>
 
