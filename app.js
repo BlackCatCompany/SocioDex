@@ -12,6 +12,7 @@ const app = express();
 const indexRouter = require('./routes/index');
 const sociodexRouter = require('./routes/sociodex');
 const socioGloboRouter = require('./routes/socioGlobo')
+const adicionarPerguntasRouter = require('./routes/adicionarPerguntas')
 const quizRouter = require('./routes/quiz');
 const aboutRouter = require('./routes/about');
 
@@ -43,6 +44,7 @@ app.use('/', indexRouter);
 app.use('/sociodex', sociodexRouter);
 app.use('/socioGlobo', socioGloboRouter)
 app.use('/quiz', quizRouter);
+app.use('/adicionarPerguntas', adicionarPerguntasRouter)
 app.use('/about', aboutRouter);
 
 // Tratamento de erros 404 (quando a rota não existe)
