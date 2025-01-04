@@ -9,12 +9,13 @@ const config = require('./config'); // Importando o arquivo de configurações
 const app = express();
 
 // Importação das rotas
-const indexRouter = require('./routes/index');
-const sociodexRouter = require('./routes/sociodex');
-const socioGloboRouter = require('./routes/socioGlobo')
-const adicionarPerguntasRouter = require('./routes/adicionarPerguntas')
-const quizRouter = require('./routes/quiz');
-const aboutRouter = require('./routes/about');
+const indexRouter = require('./routes/index'); // Página Home (Index)
+const sociodexRouter = require('./routes/sociodex'); // Página da Sociodex
+const socioGloboRouter = require('./routes/socioGlobo') // Página do Mapa
+const adicionarPerguntasRouter = require('./routes/adicionarPerguntas') // Página adicionar Perguntas
+const adminPerguntasRouter = require('./routes/adminPerguntas') // Página admin das Perguntas
+const quizRouter = require('./routes/quiz'); // Página Quiz 
+const aboutRouter = require('./routes/about'); // Página Sobre
 
 // Configuração do motor de visualização (EJS) e pasta das views
 app.set('view engine', 'ejs');
