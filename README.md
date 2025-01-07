@@ -10,21 +10,21 @@ A **Sociodex** é uma plataforma interativa e gameficada que proporciona uma ex
   - Nome
   - Foto
   - Características principais
-- **Informações Detalhadas**: Ao clicar em um card, uma nova página é aberta exibindo dados mais aprofundados sobre o socólogo.
+- **Informações Detalhadas**: Ao clicar em um card, uma nova página é aberta exibindo dados mais aprofundados sobre o sociólogo.
 
 ### 2. **🌍 Mapa Interativo**
 - **API da Mapbox**: Integração com a API Mapbox para exibir marcações geográficas interativas.
-- **Marcações Personalizadas**: Cada marcação no mapa inclui uma foto e informações do respectivo socólogo.
+- **Marcações Personalizadas**: Cada marcação no mapa inclui uma foto e informações do respectivo sociólogo.
 
 ### 3. **🎯 Quiz Educacional**
 - **Perguntas sobre Sociólogos**: Um quiz interativo para testar o conhecimento dos usuários sobre os pensadores apresentados no site.
 - **CRUD de Questões**: Painel administrativo para adicionar, editar e excluir perguntas do quiz.
 
 ### 4. **🔧 Sistema CRUD Completo**
-- **Administração de Socólogos**: 
+- **Administração de Sociólogos**: 
   - Adicionar novos socólogos.
   - Editar informações existentes.
-  - Excluir socólogos.
+  - Excluir sociólogos.
 - **Gestão de Dados Centralizada**: Todo o gerenciamento ocorre em uma interface intuitiva e segura.
 
 ## 💻 Tecnologias Utilizadas
@@ -54,14 +54,14 @@ A **Sociodex** é uma plataforma interativa e gameficada que proporciona uma ex
 
 ## 🔍 Como Utilizar
 ### Para Usuários Gerais
-1. Acesse a página inicial para visualizar os socólogos em forma de cards.
+1. Acesse a página inicial para visualizar os sociólogos em forma de cards.
 2. Clique em um card para acessar informações detalhadas.
 3. Explore o mapa interativo para localizar socólogos e suas contribuições.
 4. Participe do quiz para testar seus conhecimentos.
 
 ### Para Administradores
 1. Faça login no painel administrativo.
-2. Gerencie os socólogos (adicionar, editar, excluir).
+2. Gerencie os sociólogos (adicionar, editar, excluir).
 3. Adicione ou edite perguntas no quiz.
 
 ## 🚀 Como Executar Localmente
