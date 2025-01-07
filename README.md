@@ -1,12 +1,12 @@
-# Sociólogos Web Application
+# SocioDex
 
 ## 📚 Descrição Geral
-A **Sociodex** é uma plataforma interativa e gameficada que proporciona uma experiência única para explorar a vida e as contribuições dos grandes pensadores da sociologia. Este site combina tecnologia de ponta e um design envolvente para oferecer informações detalhadas sobre os sociólogos, permitindo aos usuários interagir com mapas dinâmicos, visualizar informações personalizadas e participar de vários quiz educativos. O sistema também conta com um painel administrativo completo para gerenciar os dados.
+A **SocioDex** é uma plataforma interativa e gamificada que proporciona uma experiência única para explorar a vida e as contribuições dos grandes pensadores da sociologia. Este site combina tecnologia de ponta e um design envolvente para oferecer informações detalhadas sobre os sociólogos, permitindo aos usuários interagir com mapas dinâmicos, visualizar informações personalizadas e participar de quizzes educativos. O sistema também conta com um painel administrativo completo para gerenciar os dados.
 
 ## ⚙️ Funcionalidades
 
-### 1. **📈 Visualização de Socólogos**
-- **Cards Dinâmicos**: Cada socólogo é representado em um card contendo:
+### 1. **📈 Visualização de Sociólogos**
+- **Cards Dinâmicos**: Cada sociólogo é representado em um card contendo:
   - Nome
   - Foto
   - Características principais
@@ -22,9 +22,9 @@ A **Sociodex** é uma plataforma interativa e gameficada que proporciona uma ex
 
 ### 4. **🔧 Sistema CRUD Completo**
 - **Administração de Sociólogos**: 
-  - Adicionar novos socólogos.
+  - Adicionar novos sociólogos.
   - Editar informações existentes.
-  - Excluir sociólogos.
+  - Excluir socólogos.
 - **Gestão de Dados Centralizada**: Todo o gerenciamento ocorre em uma interface intuitiva e segura.
 
 ## 💻 Tecnologias Utilizadas
@@ -56,13 +56,8 @@ A **Sociodex** é uma plataforma interativa e gameficada que proporciona uma ex
 ### Para Usuários Gerais
 1. Acesse a página inicial para visualizar os sociólogos em forma de cards.
 2. Clique em um card para acessar informações detalhadas.
-3. Explore o mapa interativo para localizar socólogos e suas contribuições.
+3. Explore o mapa interativo para localizar sociólogos e suas contribuições.
 4. Participe do quiz para testar seus conhecimentos.
-
-### Para Administradores
-1. Faça login no painel administrativo.
-2. Gerencie os sociólogos (adicionar, editar, excluir).
-3. Adicione ou edite perguntas no quiz.
 
 ## 🚀 Como Executar Localmente
 1. Clone o repositório:
@@ -73,16 +68,21 @@ A **Sociodex** é uma plataforma interativa e gameficada que proporciona uma ex
    ```bash
    npm install
    ```
-3. Configure o arquivo `.config.js`e `token.js` com suas credenciais respectivamente (exemplo abaixo):
+3. Crie uma conta no MongoDB e no Mapbox para utilizar o banco de dados e a API do mapa:
+
+   - Acesse MongoDB aqui: [https://account.mongodb.com/account/login](https://account.mongodb.com/account/login)
+   - Acesse Mapbox aqui: [https://account.mapbox.com/auth/signup/](https://account.mapbox.com/auth/signup/)
+
+4. Configure o arquivo `config.js` e `token.js` com suas credenciais respectivamente (exemplo abaixo):
+   ```config.js
+   mongoURI: 'mongodb+srv://[username]:[senha]@[nomeDoCluster].4mcic.mongodb.net/?retryWrites=true&w=majority&appName=[nomeDoCluster]'
+   tokenAcess = '[Seu Token da Mapbox aqui]';
    ```
-   MONGODB_URI=sua-uri-do-mongodb
-   MAPBOX_TOKEN=seu-token-da-mapbox
-   ```
-4. Inicie o servidor:
+5. Inicie o servidor:
    ```bash
    npm start
    ```
-5. Acesse o site em [http://localhost:3000](http://localhost:3000).
+6. Acesse o site em [http://localhost:3000](http://localhost:3000).
 
 ## 🔄 Possibilidades de Expansão
 - Integração com outras APIs para enriquecer os dados.
