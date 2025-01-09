@@ -80,14 +80,12 @@ A **SocioDex** é uma plataforma interativa e gamificada que proporciona uma exp
     mongoURI: 'mongodb+srv://[username]:[senha]@[nomeDoCluster].4mcic.mongodb.net/?retryWrites=true&w=majority&appName=[nomeDoCluster]'
   };
    module.exports = config;
-   ```
 
-   ``` mapboxConfig.js
    const mapboxConfig = {
     acessToken = '[Seu Token da Mapbox aqui]';
-};
-
+  };
    module.exports = mapboxConfig;
+
    ```
 5. Inicie o servidor:
    ```bash
