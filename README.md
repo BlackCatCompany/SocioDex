@@ -74,19 +74,23 @@ A **SocioDex** é uma plataforma interativa e gamificada que proporciona uma exp
    - Acesse Mapbox aqui: [https://account.mapbox.com/auth/signup/](https://account.mapbox.com/auth/signup/)
 
 4. Crie os seguintes arquivo na pasta do projeto, onde se encontra o app.js e configure-os da seguinte maneira `config.js` e `mapboxConfig.js` com suas credenciais respectivamente (exemplo abaixo):
-   ```config.js
+#### Arquivo `config.js`:
+```javascript
+const config = {
+  mongoURI: 'mongodb+srv://[username]:[senha]@[nomeDoCluster].4mcic.mongodb.net/?retryWrites=true&w=majority&appName=[nomeDoCluster]'
+};
+module.exports = config;
+```
 
-   const config = {
-    mongoURI: 'mongodb+srv://[username]:[senha]@[nomeDoCluster].4mcic.mongodb.net/?retryWrites=true&w=majority&appName=[nomeDoCluster]'
-  };
-   module.exports = config;
+#### Arquivo `mapboxConfig.js`:
+```javascript
+const mapboxConfig = {
+    accessToken: '[Seu Token de acesso aqui]',
+};
 
-   const mapboxConfig = {
-    acessToken = '[Seu Token da Mapbox aqui]';
-  };
-   module.exports = mapboxConfig;
-
-   ```
+module.exports = mapboxConfig;
+```
+   
 5. Inicie o servidor:
    ```bash
    npm start
