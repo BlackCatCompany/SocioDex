@@ -6,8 +6,14 @@
     <title>Mapa Sociólogos</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
+    <!-- Importa o arquivo CSS do Mapbox GL JS para estilização do mapa -->
+    <!-- 
+  - Este link fornece estilos básicos necessários para que o Mapbox GL funcione corretamente.
+  - Inclui layouts de mapa, interações e outros elementos visuais.
+    -->
     <link rel="stylesheet" href="/stylesheets/socioGlobo.css"> <!-- Linkando o Css do SocioGlobo-->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script> <!-- -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
+     <!-- Importa a biblioteca JavaScript do Mapbox GL JS -->
 </head>
 
 <!-- Incluir o Header -->
@@ -19,7 +25,7 @@
 
     <script>
         // Adiciona o token de acesso do Mapbox para autenticação
-        mapboxgl.accessToken = 'pk.eyJ1Ijoid2xhZGluOTciLCJhIjoiY201OW0wdzd6NGFqdzJxcGticXp0dnpnMiJ9.4bTvBPpna6gJ96xPU91mBQ';
+        mapboxgl.accessToken = '<%= mapboxConfig %>'; // Passando token em forma de string literal
 
         // Configuração inicial do mapa, definindo o contêiner HTML, estilo e posição inicial
         const map = new mapboxgl.Map({
@@ -37,8 +43,8 @@
             // Cria um elemento HTML para representar o marcador no mapa
             const el = document.createElement('div');
             el.className = 'marker'; // Classe CSS para personalizar o marcador
-            el.style.width = '40px'; // Largura do marcador
-            el.style.height = '40px'; // Altura do marcador
+            el.style.width = '45px'; // Largura do marcador
+            el.style.height = '45px'; // Altura do marcador
             el.style.backgroundImage = `url(${sociologo.imagem})`; // Define a imagem de fundo do marcador
             el.style.backgroundSize = 'cover'; // Ajusta a imagem para cobrir todo o marcador
             el.style.backgroundPosition = 'center'; // Centraliza a imagem
