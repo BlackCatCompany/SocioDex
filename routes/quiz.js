@@ -49,16 +49,18 @@ router.get("/", async function (req, res, next) {
 router.post("/submit", async function (req, res, next) {
   try {
     const questions = await Pergunta.find();
-    const currentIndex = parseInt(req.body.index); // Índice da pergunta atual
-    const userAnswer = req.body.answer; // Resposta do usuário
-    let score = parseInt(req.body.score) || 0; // Pontuação acumulada
+    const currentIndex = parseInt(req.body.index);
+    const userAnswer = req.body.answer;
+    let score = parseInt(req.body.score) || 0;
 
-    let feedback;
+    let feedback, feedbackClass;
     if (userAnswer === questions[currentIndex].respostaCorreta) {
       feedback = "Correto! Boa resposta!";
+      feedbackClass = "correct-feedback";
       score++;
     } else {
       feedback = `Incorreto! A resposta certa é: "${questions[currentIndex].respostaCorreta}".`;
+      feedbackClass = "incorrect-feedback";
     }
 
     res.render("quiz", {
@@ -70,6 +72,7 @@ router.post("/submit", async function (req, res, next) {
       currentIndex,
       score,
       feedback,
+      feedbackClass, // Passa a classe para a view
     });
   } catch (err) {
     next(err);

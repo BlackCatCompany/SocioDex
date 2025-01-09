@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <!-- Definição do charset e da viewport para suportar caracteres especiais e responsividade -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Título da página, que é dinâmico com base na variável title -->
   <title><%= title %></title>
-
-  <!-- Link para o arquivo CSS do quiz -->
-  <link rel="stylesheet" href="/stylesheets/quiz.css"> <!-- Caminho do CSS -->
-
-  <!-- Pré-conexões com fontes do Google -->
+  <link rel="stylesheet" href="/stylesheets/quiz.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <!-- Link para a fonte Poppins do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <script>
-  // Função que é executada quando a página for carregada
   window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    
     if (preloader) {
-      // Adiciona a classe 'hidden' para iniciar a transição de desaparecimento
       preloader.classList.add('hidden');
-      
-      // Após 1 segundo (tempo de transição), o preloader será removido
       setTimeout(() => {
         preloader.style.display = 'none';
-      }, 1000); // Tempo em milissegundos deve coincidir com o CSS
+      }, 1000);
     }
   });
 </script>
 
-<%- include('./partials/header') %> <!-- Inclui o cabeçalho da aplicação -->
+<%- include('./partials/header') %>
 
 <body>
-
-  <!-- Preloader (carregador) que aparece enquanto a página carrega -->
   <div id="preloader">
     <div class="loader">
-      <!-- Aqui pode ser colocada a logo ou animação que aparece enquanto carrega -->
       <img src="/socio.png" alt="Logo do Projeto" class="logo">
       <p>Carregando...</p>
     </div>
@@ -51,7 +34,7 @@
 
   <div class="quiz-container">
     <% if (feedback) { %>
-      <div class="feedback-box">
+      <div class="feedback-box <%= feedbackClass %>">
         <p><%= feedback %></p>
         <form id="nextForm" method="POST" action="/quiz/next">
           <input type="hidden" name="index" value="<%= currentIndex %>">
@@ -84,6 +67,5 @@
       </div>
     <% } %>
   </div>
-
 </body>
 </html>
