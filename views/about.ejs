@@ -38,6 +38,21 @@
         </div>
       </div>
 
+      <script>document.addEventListener('DOMContentLoaded', () => {
+        const mmvElements = document.querySelectorAll('.comp');
+      
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        });
+      
+        mmvElements.forEach((el) => observer.observe(el));
+      });
+      </script>
+
     </section>
 
     <section class="about-header">

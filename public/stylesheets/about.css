@@ -39,7 +39,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 0px
-
+    
   }
 
   .comp h2 {
@@ -97,6 +97,13 @@ body {
     color: #666;
     margin: 0;
   }
+
+  /*Animação membro equipe*/
+  .team-member img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  
   
   /* Responsividade */
   @media screen and (max-width: 768px) {
@@ -108,4 +115,17 @@ body {
       max-width: 100%;
     }
   }
+
+  /*Animação MVV*/
+  .comp {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  
+  .comp.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
   
