@@ -27,6 +27,7 @@ app.use(express.json()); // Parse de JSON
 app.use(express.urlencoded({ extended: false })); // Parse de URL encoded
 app.use(cookieParser()); // Parse de cookies
 app.use(express.static(path.join(__dirname, 'public'))); // Arquivos estáticos (CSS, JS, imagens)
+app.use(express.static('public')); //Favicon da Página
 
 // Conexão com MongoDB
 mongoose

@@ -6,13 +6,14 @@
   <title>About Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/about.css">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
 </head>
 <body>
   <!-- Header -->
   <%- include('./partials/header') %> 
-
+ 
   <main class="about-container">
-
+   
     <!-- Sobre a Black Cat-->
     <section class="sobre-blackcat">
       <h1>Sobre a Black Cat</h1>
@@ -38,7 +39,10 @@
         </div>
       </div>
 
-      <script>document.addEventListener('DOMContentLoaded', () => {
+      <script>
+    
+      
+      document.addEventListener('DOMContentLoaded', () => {
         const mmvElements = document.querySelectorAll('.comp');
       
         const observer = new IntersectionObserver((entries) => {
