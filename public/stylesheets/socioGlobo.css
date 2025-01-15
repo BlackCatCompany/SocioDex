@@ -34,7 +34,7 @@ body {
     gap: 10px;
   }
   
-  #searchInput {
+  #Input {
     padding: 10px;
     font-size: 16px;
     border: 2px solid #ccc;

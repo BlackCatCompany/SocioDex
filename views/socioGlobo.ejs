@@ -6,6 +6,7 @@
     <title>Mapa Sociólogos</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <!-- Importa o arquivo CSS do Mapbox GL JS para estilização do mapa -->
     <!-- 
   - Este link fornece estilos básicos necessários para que o Mapbox GL funcione corretamente.
@@ -23,8 +24,15 @@
     
     <!-- Barra de pesquisa dos Sociólogos  -->
     <div>
-        <input id="searchInput" type="text" placeholder="Digite o nome do sociólogo">
-        <button onclick="searchSocio()">Buscar</button>
+
+        <form id="search-form">
+            <input type="text" id="sociologist-search" placeholder="Digite o nome do sociólogo" />
+            <button type="submit">Pesquisar</button>
+          </form>
+          
+<script src="/routes/pesquisaGlobo.js"></script>
+
+        
       </div>
       
     
