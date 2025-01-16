@@ -16,6 +16,7 @@ const adicionarPerguntasRouter = require('./routes/adicionarPerguntas') // Pági
 const adminPerguntasRouter = require('./routes/adminPerguntas') // Página admin das Perguntas
 const quizRouter = require('./routes/quiz'); // Página Quiz 
 const aboutRouter = require('./routes/about'); // Página Sobre
+const selecionarFuncaoRouter = require('./routes/selecionarFuncao');
 
 // Configuração do motor de visualização (EJS) e pasta das views
 app.set('view engine', 'ejs');
@@ -48,6 +49,7 @@ app.use('/socioGlobo', socioGloboRouter)
 app.use('/quiz', quizRouter);
 app.use('/adicionarPerguntas', adicionarPerguntasRouter)
 app.use('/about', aboutRouter);
+app.use('/selecionar-funcao', selecionarFuncaoRouter);
 
 // Tratamento de erros 404 (quando a rota não existe)
 app.use((req, res, next) => {
