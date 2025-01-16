@@ -2,11 +2,19 @@ const express = require('express');
 const Sociologo = require('../models/sociologo');
 const router = express.Router();
 
-// Rota para exibir a página principal da SocioDex
+// Rota para exibir a página principal da SocioDex com funcionalidade de busca
 router.get('/', async (req, res) => {
   try {
-    const sociologos = await Sociologo.find(); // Recupera todos os sociólogos do banco de dados
-    res.render('sociodex', { sociologos }); // Renderiza a página sociodex.ejs
+    const { busca } = req.query;  // Captura o parâmetro de busca da URL
+    let filtro = {};
+
+    if (busca) {
+      filtro.nome = new RegExp(busca, 'i');  // 'i' para tornar a busca insensível a maiúsculas/minúsculas
+    }
+
+    const sociologos = await Sociologo.find(filtro);  // Aplica o filtro de busca
+
+    res.render('sociodex', { sociologos, busca });  // Passa o filtro de busca também para a view
   } catch (error) {
     res.status(500).send('Erro ao carregar os sociólogos: ' + error.message);
   }
