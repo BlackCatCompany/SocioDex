@@ -14,57 +14,78 @@
     -->
     <link rel="stylesheet" href="/stylesheets/socioGlobo.css"> <!-- Linkando o Css do SocioGlobo-->
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.1/mapbox-gl.js"></script>
-     <!-- Importa a biblioteca JavaScript do Mapbox GL JS -->
+    <!-- Importa a biblioteca JavaScript do Mapbox GL JS -->
 </head>
 
 <!-- Incluir o Header -->
 <%- include('./partials/header') %>
 
-<body>
-    <!-- Elemento onde o mapa será exibido -->
-    <div id="map"></div>
+    <body>
+        <!-- Formulário de busca -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar Sociólgo" />
+            <button id="search-button">Buscar</button>
+            <p id="search-message" class="mensagem"></p> <!-- Mensagem de erro -->
+        </div>
 
-    <script>
-        // Adiciona o token de acesso do Mapbox para autenticação
-        mapboxgl.accessToken = '<%= mapboxConfig %>'; // Passando token em forma de string literal
+        <!-- Elemento onde o mapa será exibido -->
+        <div id="map"></div>
 
-        // Configuração inicial do mapa, definindo o contêiner HTML, estilo e posição inicial
-        const map = new mapboxgl.Map({
-            container: 'map', // ID do elemento HTML onde o mapa será exibido
-            style: 'mapbox://styles/mapbox/streets-v12', // Estilo do mapa
-            center: [-38.5426, -3.71722], // Coordenadas iniciais [longitude, latitude]
-            zoom: 4 // Nível inicial de zoom
-        });
+        <script>
+            mapboxgl.accessToken = '<%= mapboxConfig %>'; // Puxando token de acesso modularizado
 
-        // Dados das localizações dos sociólogos recebidos do backend (convertidos para JavaScript)
-        const sociologos = JSON.parse('<%- JSON.stringify(sociologos) %>');
+            const map = new mapboxgl.Map({ // Criando o mapa
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v12', // Adicionando o estilo do mapa
+                center: [-38.5426, -3.71722], // Coordenadas padrão
+                zoom: 4 // Zoom padrão de inicio
+            });
 
-        // Itera sobre cada sociólogo para criar marcadores no mapa
-        sociologos.forEach(sociologo => {
-            // Cria um elemento HTML para representar o marcador no mapa
-            const el = document.createElement('div');
-            el.className = 'marker'; // Classe CSS para personalizar o marcador
-            el.style.width = '45px'; // Largura do marcador
-            el.style.height = '45px'; // Altura do marcador
-            el.style.backgroundImage = `url(${sociologo.imagem})`; // Define a imagem de fundo do marcador
-            el.style.backgroundSize = 'cover'; // Ajusta a imagem para cobrir todo o marcador
-            el.style.backgroundPosition = 'center'; // Centraliza a imagem
-            el.style.borderRadius = '50%'; // Torna o marcador redondo
+            const sociologos = JSON.parse('<%- JSON.stringify(sociologos) %>'); // Passando os sociologos em forma de string
 
-            // Adiciona o marcador ao mapa com base nas coordenadas do sociólogo
-            new mapboxgl.Marker(el)
-                .setLngLat([sociologo.coordenadas[1], sociologo.coordenadas[0]]) // Define as coordenadas [longitude, latitude]
-                .setPopup(
-                    // Adiciona um popup ao marcador que exibirá o nome do sociólogo ao clicar
-                    new mapboxgl.Popup({ offset: 25 }).setText(sociologo.nome)
-                )
-                .addTo(map); // Adiciona o marcador ao mapa
-        });
+            // Adicionar os marcadores no mapa
+            sociologos.forEach(sociologo => {
+                const el = document.createElement('div');
+                el.className = 'marker';
+                el.style.width = '45px';
+                el.style.height = '45px';
+                el.style.backgroundImage = `url(${sociologo.imagem})`;
+                el.style.backgroundSize = 'cover';
+                el.style.backgroundPosition = 'center';
+                el.style.borderRadius = '50%';
 
+                new mapboxgl.Marker(el)
+                    .setLngLat([sociologo.coordenadas[1], sociologo.coordenadas[0]])
+                    .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(sociologo.nome))
+                    .addTo(map);
+            });
 
-    </script>
-</body>
+            // Lógica de busca no frontend
+            document.getElementById('search-button').addEventListener('click', () => {
+                const searchInput = document.getElementById('search-input').value.trim();
+                const searchMessage = document.getElementById('search-message');
 
+                if (!searchInput) {
+                    searchMessage.textContent = 'Por favor, insira um nome para buscar.';
+                    return;
+                }
+
+                // Busca no array de sociólogos
+                const resultado = sociologos.find(soc =>
+                    soc.nome.toLowerCase().includes(searchInput.toLowerCase())
+                );
+
+                if (resultado) {
+                    searchMessage.textContent = ''; // Limpa a mensagem de erro
+                    map.flyTo({ // Função do map que vai até o sociologo destino
+                        center: [resultado.coordenadas[1], resultado.coordenadas[0]], // Centralizando nas coordenadas d sociólogo buscado
+                        zoom: 12, // Zoom ajustado para foco
+                        essential: true
+                    });
+                } else {
+                    searchMessage.textContent = `Nenhum sociólogo encontrado com o nome "${searchInput}".`; // Caso não ache retorna o erro
+                }
+            });
+        </script>
     </body>
-
 </html>
