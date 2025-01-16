@@ -16,14 +16,16 @@ router.get("/", async function (req, res, next) {
       });
     }
 
-    // Renderiza a primeira pergunta sem embaralhar
+    // Seleciona uma pergunta aleatória
+    const randomIndex = Math.floor(Math.random() * questions.length);
+
     res.render("quiz", {
       title: "Quiz de Sociologia",
       question: {
-        question: questions[0].pergunta,
-        options: questions[0].alternativas, // Não embaralha as alternativas
+        question: questions[randomIndex].pergunta,
+        options: questions[randomIndex].alternativas, // Não embaralha as alternativas
       },
-      currentIndex: 0,
+      currentIndex: randomIndex,
       score: 0,
       feedback: null,
     });
