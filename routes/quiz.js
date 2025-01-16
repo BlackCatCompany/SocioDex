@@ -2,16 +2,6 @@ var express = require("express");
 var router = express.Router();
 const Pergunta = require("../models/perguntas"); // Modelo MongoDB
 
-
-// Função para embaralhar um array (Fisher-Yates Shuffle)
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // Troca os elementos
-  }
-  return array;
-}
-
 /* GET página inicial do quiz */
 router.get("/", async function (req, res, next) {
   try {
@@ -26,15 +16,12 @@ router.get("/", async function (req, res, next) {
       });
     }
 
-    // Embaralha as perguntas
-    questions = shuffleArray(questions);
-
-    // Renderiza a primeira pergunta embaralhada
+    // Renderiza a primeira pergunta sem embaralhar
     res.render("quiz", {
       title: "Quiz de Sociologia",
       question: {
         question: questions[0].pergunta,
-        options: shuffleArray(questions[0].alternativas), // Embaralha as alternativas também
+        options: questions[0].alternativas, // Não embaralha as alternativas
       },
       currentIndex: 0,
       score: 0,
@@ -67,7 +54,7 @@ router.post("/submit", async function (req, res, next) {
       title: "Quiz de Sociologia",
       question: {
         question: questions[currentIndex].pergunta,
-        options: questions[currentIndex].alternativas,
+        options: questions[currentIndex].alternativas, // Não embaralha as alternativas
       },
       currentIndex,
       score,
@@ -91,7 +78,7 @@ router.post("/next", async function (req, res, next) {
         title: "Quiz de Sociologia",
         question: {
           question: questions[currentIndex + 1].pergunta,
-          options: questions[currentIndex + 1].alternativas,
+          options: questions[currentIndex + 1].alternativas, // Não embaralha as alternativas
         },
         currentIndex: currentIndex + 1,
         score,
