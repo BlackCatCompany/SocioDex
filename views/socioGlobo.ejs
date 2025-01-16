@@ -21,21 +21,11 @@
 <%- include('./partials/header') %>
 
 <body>
-    
-    <!-- Barra de pesquisa dos Sociólogos  -->
-    <div>
-
-        <form id="search-form">
-            <input type="text" id="sociologist-search" placeholder="Digite o nome do sociólogo" />
-            <button type="submit">Pesquisar</button>
-          </form>
-          
-<script src="/routes/pesquisaGlobo.js"></script>
-
-        
-      </div>
-      
-    
+    <!-- Campo de busca -->
+    <div id="search-container">
+        <input id="search-input" type="text" placeholder="Digite o nome do sociólogo..." />
+        <button id="search-button">Buscar</button>
+    </div>
     <!-- Elemento onde o mapa será exibido -->
     <div id="map"></div>
 
@@ -75,6 +65,38 @@
                 )
                 .addTo(map); // Adiciona o marcador ao mapa
         });
+
+        // Função de busca
+        const searchSociologo = async () => {
+            const searchValue = document.getElementById('search-input').value;
+
+            try {
+                const response = await fetch(`/socioGlobo/buscar?nome=${encodeURIComponent(searchValue)}`);
+                if (response.ok) {
+                    const sociologo = await response.json();
+
+                    // Centralizar no mapa e destacar marcador
+                    map.flyTo({
+                        center: [sociologo.coordenadas[1], sociologo.coordenadas[0]],
+                        zoom: 8,
+                    });
+
+                    new mapboxgl.Popup({ offset: 25 })
+                        .setLngLat([sociologo.coordenadas[1], sociologo.coordenadas[0]])
+                        .setText(sociologo.nome)
+                        .addTo(map);
+                } else {
+                    alert('Sociólogo não encontrado. Verifique o nome digitado.');
+                }
+            } catch (error) {
+                console.error('Erro ao buscar o sociólogo:', error);
+            }
+        };
+
+        // Evento de clique no botão de busca
+        document.getElementById('search-button').addEventListener('click', searchSociologo);
+
+
     </script>
 </body>
 
