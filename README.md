@@ -98,6 +98,20 @@ module.exports = mapboxConfig;
    ```
 6. Acesse o site em [http://localhost:3000](http://localhost:3000).
 
+7. Acesse o painel de administração para adicionar sociólogos ou perguntas:
+   - Após iniciar o servidor, acesse a rota de administração para gerenciar os dados de sociólogos e perguntas do quiz:
+     - Acesse o painel em [http://localhost:3000/admin](http://localhost:3000/admin).
+   - **Senha de acesso**: A senha de administração deve ser fornecida na URL da seguinte forma:
+     - [http://localhost:3000/admin?blackcatcompany](http://localhost:3000/admin?blackcatcompany)
+
+8. Aproveite a aplicação!
+   - Agora que a aplicação está em funcionamento, aproveite para explorar as funcionalidades:
+     - Navegue pelos **cards dinâmicos** dos sociólogos e descubra informações detalhadas.
+     - Teste seus conhecimentos com o **quiz educativo** sobre os sociólogos.
+     - Explore o **mapa interativo** e veja as marcações dos locais relacionados aos pensadores.
+     - Adicione os sociólogos e perguntas para testar nossas funcionalidades.
+
+
 ## 🔄 Possibilidades de Expansão
 - Integração com outras APIs para enriquecer os dados.
 - Gamificação adicional para engajar ainda mais os usuários.
