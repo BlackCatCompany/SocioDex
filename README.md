@@ -104,7 +104,13 @@ module.exports = mapboxConfig;
    - **Senha de acesso**: A senha de administração deve ser fornecida na URL da seguinte forma:
      - [http://localhost:3000/admin?blackcatcompany](http://localhost:3000/admin?blackcatcompany)
 
-8. Aproveite a aplicação!
+8. Adicione os dados ao MongoDB
+   - Para facilitar a inicialização dos dados, você pode baixar dois arquivos JSON que contêm as informações necessárias:
+     - **[Listasociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/ListaSociologos.json)**: Contém informações dos sociólogos.
+     - **[perguntasSociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/PerguntasSociolgos.json)**: Contém as perguntas para o quiz.
+   - Após o download, importe os arquivos JSON para as coleções **"ListaSociologos"** e **"PerguntasSociologos"**, respectivamente, no MongoDB.
+
+9. Aproveite a aplicação!
    - Agora que a aplicação está em funcionamento, aproveite para explorar as funcionalidades:
      - Navegue pelos **cards dinâmicos** dos sociólogos e descubra informações detalhadas.
      - Teste seus conhecimentos com o **quiz educativo** sobre os sociólogos.
