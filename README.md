@@ -107,7 +107,7 @@ module.exports = mapboxConfig;
 8. Adicione os dados ao MongoDB
    - Para facilitar a inicialização dos dados, você pode baixar dois arquivos JSON que contêm as informações necessárias:
      - **[Listasociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/ListaSociologos.json)**: Contém informações dos sociólogos.
-     - **[perguntasSociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/PerguntasSociolgos.json)**: Contém as perguntas para o quiz.
+     - **[PerguntasSociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/PerguntasSociolgos.json)**: Contém as perguntas para o quiz.
    - Após o download, importe os arquivos JSON para as coleções **"ListaSociologos"** e **"PerguntasSociologos"**, respectivamente, no MongoDB.
 
 9. Aproveite a aplicação!
