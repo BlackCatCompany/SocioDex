@@ -52,13 +52,6 @@ A **SocioDex** é uma plataforma interativa e gamificada que proporciona uma exp
 3. **Foco em Administração**: Sistema CRUD completo para facilitar a gestão de conteúdo.
 4. **Escalabilidade**: Arquitetura modular que permite a expansão futura do projeto.
 
-## 🔍 Como Utilizar
-### Para Usuários Gerais
-1. Acesse a página inicial para visualizar os sociólogos em forma de cards.
-2. Clique em um card para acessar informações detalhadas.
-3. Explore o mapa interativo para localizar sociólogos e suas contribuições.
-4. Participe do quiz para testar seus conhecimentos.
-
 ## 🚀 Como Executar Localmente
 1. Clone o repositório:
    ```bash
@@ -73,11 +66,19 @@ A **SocioDex** é uma plataforma interativa e gamificada que proporciona uma exp
    - Acesse MongoDB aqui: [https://account.mongodb.com/account/login](https://account.mongodb.com/account/login)
    - Acesse Mapbox aqui: [https://account.mapbox.com/auth/signup/](https://account.mapbox.com/auth/signup/)
 
-4. Crie os seguintes arquivo na pasta do projeto, onde se encontra o app.js e configure-os da seguinte maneira `config.js` e `mapboxConfig.js` com suas credenciais respectivamente (exemplo abaixo):
+
+4. No MongoDB:
+   - Acesse o MongoDB e crie um **Cluster** no plano gratuito.
+   - Após criar o cluster, crie um banco de dados chamado **"test"**.
+   - Dentro do banco de dados **"test"**, crie duas coleções:
+     - **"ListaSociologos"**
+     - **"PerguntasSociologos"**
+
+5. Crie os seguintes arquivo na pasta do projeto, onde se encontra o app.js e configure-os da seguinte maneira `config.js` e `mapboxConfig.js` com suas credenciais respectivamente (exemplo abaixo):
 #### Arquivo `config.js`:
 ```javascript
 const config = {
-  mongoURI: 'mongodb+srv://[username]:[senha]@[nomeDoCluster].4mcic.mongodb.net/?retryWrites=true&w=majority&appName=[nomeDoCluster]'
+  mongoURI: '[Cole seu token de acesso do mongodb aqui]'
 };
 module.exports = config;
 ```
@@ -85,7 +86,7 @@ module.exports = config;
 #### Arquivo `mapboxConfig.js`:
 ```javascript
 const mapboxConfig = {
-    accessToken: '[Seu Token de acesso aqui]',
+    accessToken: '[Seu Token de acesso do mapbox aqui]',
 };
 
 module.exports = mapboxConfig;
