@@ -98,14 +98,14 @@ module.exports = mapboxConfig;
    ```
 6. Acesse o site em [http://localhost:3000](http://localhost:3000).
 
-7. Acesse o painel de administração para adicionar sociólogos ou perguntas:
+7. Acesse o painel de administração para adicionar sociólogos ou perguntas (Opcional):
    - Após iniciar o servidor, acesse a rota de administração para gerenciar os dados de sociólogos e perguntas do quiz:
      - Acesse o painel em [http://localhost:3000/admin](http://localhost:3000/admin).
    - **Senha de acesso**: A senha de administração deve ser fornecida na URL da seguinte forma:
      - [http://localhost:3000/admin?blackcatcompany](http://localhost:3000/admin?blackcatcompany)
 
 8. Adicione os dados ao MongoDB
-   - Para facilitar a inicialização dos dados, você pode baixar dois arquivos JSON que contêm as informações necessárias:
+   - Para facilitar a inicialização dos dados ao invés de adicionar manualmente, você pode baixar dois arquivos JSON que contêm as informações necessárias:
      - **[Listasociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/ListaSociologos.json)**: Contém informações dos sociólogos.
      - **[PerguntasSociologos.json](https://github.com/BlackCatCompany/HospedagemJSON/blob/main/PerguntasSociolgos.json)**: Contém as perguntas para o quiz.
    - Após o download, importe os arquivos JSON para as coleções **"ListaSociologos"** e **"PerguntasSociologos"**, respectivamente, no MongoDB.
@@ -143,3 +143,8 @@ Contribuições são bem-vindas! Para contribuir:
 ## 📢 Licença
 Este projeto está licenciado sob a [MIT License](LICENSE).
 
+<div align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=express,js,nodejs,npm,vscode,mongodb,figma,git,md" />
+  </a>
+</div>
