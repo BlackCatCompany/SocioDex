@@ -16,7 +16,8 @@ const adicionarPerguntasRouter = require('./routes/adicionarPerguntas') // Pági
 const adminPerguntasRouter = require('./routes/adminPerguntas') // Página admin das Perguntas
 const quizRouter = require('./routes/quiz'); // Página Quiz 
 const aboutRouter = require('./routes/about'); // Página Sobre
-const selecionarFuncaoRouter = require('./routes/selecionarFuncao');
+const selecionarFuncaoRouter = require('./routes/selecionarFuncao'); //Seleciona função adm
+const loginRouter = require('./routes/login'); // Importa a rota de login
 
 // Configuração do motor de visualização (EJS) e pasta das views
 app.set('view engine', 'ejs');
@@ -50,6 +51,7 @@ app.use('/quiz', quizRouter);
 app.use('/adicionarPerguntas', adicionarPerguntasRouter)
 app.use('/about', aboutRouter);
 app.use('/selecionar-funcao', selecionarFuncaoRouter);
+app.use('/login', loginRouter);
 
 // Tratamento de erros 404 (quando a rota não existe)
 app.use((req, res, next) => {

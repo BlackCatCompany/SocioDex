@@ -1,10 +1,15 @@
-// selecionarFuncao.js
 const express = require('express');
+const Sociologo = require('../models/sociologo');
 const router = express.Router();
 
-// Rota para exibir a tela de escolher função
+// Página de seleção de função
 router.get('/', (req, res) => {
-  res.render('selecionarFuncao');
+  // Se o usuário não está logado, redireciona para o login
+  if (!req.headers.referer || !req.headers.referer.includes('/login')) {
+    return res.redirect('/login');
+  }
+
+  res.render('selecionarFuncao'); // Renderiza a página se o login for válido
 });
 
 module.exports = router;
