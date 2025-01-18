@@ -6,57 +6,23 @@
   <title>About Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/about.css">
-<link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
 </head>
 <body>
   <!-- Header -->
   <%- include('./partials/header') %> 
- 
+
   <main class="about-container">
-   
-    <!-- Sobre a Black Cat-->
-    <section class="sobre-blackcat">
-      <h1>Sobre a Black Cat</h1>
-      <p>Somos alunos do curso técnico em Informática do Instituto Federal do Ceará. Apaixonados por <br> programação, decidimos criar a BLACK CAT, uma empresa fictícia para ajudar no <br> desenvolvimento dos nossos projetos.</p>
 
-      <div class="mmv">
-        <div class="comp">
-          <img src="/images/missao.png" class="icon" alt="alvo">
-          <h2>MISSÃO</h2>
-          <p>Criar soluções inovadoras, unindo <br> aprendizado e criatividade para <br> transformar ideias em projetos <br> para a comunidade.</p>
-        </div>
-
-        <div class="comp">
-          <img src="/images/visao.png" class="icon" alt="binoculos">
-          <h2>VISÃO</h2>
-          <p>Ser referência acadêmica em inovação <br> e excelência, inspirando jovens <br> programadores.
-        </div>
-
-        <div class="comp">
-          <img src="/images/valores.png" class="icon" alt="diamante">
-          <h2>VALORES</h2>
-          <p>Criatividade, Colaboração, Excelência, <br> Compromisso e Ética.</p>
+    <!-- Seção Sobre a Empresa -->
+    <section class="sobre-empresa">
+      <div class="sobre-empresa-content">
+        <img src="/images/BlackCatBoys.jpg" alt="Sobre a Empresa" class="empresa-img">
+        <div class="sobre-empresa-text">
+          <h1>Sobre a Black Cat</h1>
+          <p>Somos alunos do curso técnico em Informática do Instituto Federal do Ceará. Apaixonados por programação, decidimos criar a BLACK CAT, uma empresa fictícia para ajudar no desenvolvimento dos nossos projetos.</p>
         </div>
       </div>
-
-      <script>
-    
-      
-      document.addEventListener('DOMContentLoaded', () => {
-        const mmvElements = document.querySelectorAll('.comp');
-      
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        });
-      
-        mmvElements.forEach((el) => observer.observe(el));
-      });
-      </script>
-
     </section>
 
     <section class="about-header">
@@ -75,12 +41,12 @@
         <div class="team-member">
           <img src="/images/wladison.jpg" alt="Francisco Wladison">
           <h3>Wladison Maciel</h3>
-          <p>Desenvolvedor Back-End responsável pela estrutura de código</p>
+          <p>Desenvolvedor Back-End responsável pela estrutura de código.</p>
         </div>
         <div class="team-member">
           <img src="/images/gerdso.jpg" alt="Gerdson Costa">
           <h3>Gerdson Costa</h3>
-          <p>Líder de design do projeto e desenvolvedor Front-End</p>
+          <p>Líder de design do projeto e desenvolvedor Front-End.</p>
         </div>
       </div>
 
@@ -89,12 +55,12 @@
         <div class="team-member">
           <img src="/images/matheus.jpg" alt="Matheus Carvalho">
           <h3>Matheus Carvalho</h3>
-          <p> Designer e desenvolvedor Front-End</p>
+          <p>Designer e desenvolvedor Front-End.</p>
         </div>
         <div class="team-member">
           <img src="/images/nicolas.jpg" alt="Nicolas Castro">
           <h3>Nicolas Castro</h3>
-          <p>Designer e desenvolvedor Front-End</p>
+          <p>Designer e desenvolvedor Front-End.</p>
         </div>
       </div>
     </section>
