@@ -16,16 +16,14 @@ router.get("/", async function (req, res, next) {
       });
     }
 
-    // Seleciona uma pergunta aleatória
-    const randomIndex = Math.floor(Math.random() * questions.length);
-
+    // Exibe a primeira pergunta
     res.render("quiz", {
       title: "Quiz de Sociologia",
       question: {
-        question: questions[randomIndex].pergunta,
-        options: questions[randomIndex].alternativas, // Não embaralha as alternativas
+        question: questions[0].pergunta,
+        options: questions[0].alternativas, // Não embaralha as alternativas
       },
-      currentIndex: randomIndex,
+      currentIndex: 0, // Começa do índice 0
       score: 0,
       feedback: null,
     });
@@ -56,12 +54,12 @@ router.post("/submit", async function (req, res, next) {
       title: "Quiz de Sociologia",
       question: {
         question: questions[currentIndex].pergunta,
-        options: questions[currentIndex].alternativas, // Não embaralha as alternativas
+        options: questions[currentIndex].alternativas,
       },
       currentIndex,
       score,
       feedback,
-      feedbackClass, // Passa a classe para a view
+      feedbackClass,
     });
   } catch (err) {
     next(err);
@@ -80,7 +78,7 @@ router.post("/next", async function (req, res, next) {
         title: "Quiz de Sociologia",
         question: {
           question: questions[currentIndex + 1].pergunta,
-          options: questions[currentIndex + 1].alternativas, // Não embaralha as alternativas
+          options: questions[currentIndex + 1].alternativas,
         },
         currentIndex: currentIndex + 1,
         score,
