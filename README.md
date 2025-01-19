@@ -145,6 +145,6 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 <div align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=express,js,nodejs,npm,vscode,mongodb,figma,git,md" />
+    <img src="https://skillicons.dev/icons?i=express,js,nodejs,css,html,npm,vscode,mongodb,figma,git,md" />
   </a>
 </div>
