@@ -100,9 +100,10 @@ module.exports = mapboxConfig;
 
 7. Acesse o painel de administração para adicionar sociólogos ou perguntas (Opcional):
    - Após iniciar o servidor, acesse a rota de administração para gerenciar os dados de sociólogos e perguntas do quiz:
-     - Acesse o painel em [http://localhost:3000/admin](http://localhost:3000/admin).
-   - **Senha de acesso**: A senha de administração deve ser fornecida na URL da seguinte forma:
-     - [http://localhost:3000/admin?blackcatcompany](http://localhost:3000/admin?blackcatcompany)
+     - Acesse o painel em [http://localhost:3000/selecionar-funcao](http://localhost:3000/selecionar-funcao).
+   - **Senha de acesso**: A senha de administração deve ser fornecida nos campos da seguinte forma:
+     - Usuário: BlackCat
+     - Senha: admblackcat
 
 8. Adicione os dados ao MongoDB
    - Para facilitar a inicialização dos dados ao invés de adicionar manualmente, você pode baixar dois arquivos JSON que contêm as informações necessárias:
